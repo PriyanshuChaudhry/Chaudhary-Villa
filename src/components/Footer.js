@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { Home, Lock } from "lucide-react";
 import Link from "next/link";
 import { footerContent, navLinks } from "@/data/propertyData";
 
@@ -46,8 +46,17 @@ export default function Footer() {
           <p className="text-xs text-stone-500">
             © {year} {footerContent.text}. All rights reserved.
           </p>
-          <p className="text-xs text-stone-400 mt-1">
-            Personal residential rental property listing.
+          <p className="text-xs text-stone-400 mt-1 flex items-center justify-center gap-2">
+            <span>Personal residential rental property listing.</span>
+            <span>•</span>
+            <Link
+              href="/admin"
+              className="text-stone-400 hover:text-stone-600 transition-colors inline-flex items-center gap-1"
+              title="Owner Admin Portal"
+            >
+              <Lock className="w-3 h-3" />
+              <span>Owner Portal</span>
+            </Link>
           </p>
         </div>
       </div>

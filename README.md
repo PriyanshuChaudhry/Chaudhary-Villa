@@ -125,7 +125,19 @@ Open [`src/data/propertyData.js`](file:///c:/Users/priya/Desktop/Chaudhary%20Vil
 
 ### 1. Changing Room Availability
 
-Edit [`src/data/propertyData.js`](file:///c:/Users/priya/Desktop/Chaudhary%20Villa/src/data/propertyData.js):
+You have two convenient methods:
+
+#### Method A: Using the Owner Admin Portal (`/admin`)
+1. On your phone or computer, open `/admin` (or tap the small **Lock icon** in the website footer).
+2. Enter the Owner PIN: `chaudhary2026`.
+3. Tap the toggle switches to mark rooms as **Available (Vacant)** or **Unavailable (Occupied)**, or click **"Mark House Full"** with 1 click.
+4. Adjust prices if needed.
+5. Choose your action:
+   - **"Push to GitHub"**: Automatically commits the change directly to your GitHub repository using the GitHub API. Vercel detects the commit and redeploys the site in ~30 seconds!
+   - **"Copy Code"** or **"Download File"**: Copies or downloads the updated `propertyData.js` without any syntax errors.
+
+#### Method B: Editing `src/data/propertyData.js` Directly
+Open [`src/data/propertyData.js`](file:///c:/Users/priya/Desktop/Chaudhary%20Villa/src/data/propertyData.js):
 
 ```javascript
 // To mark a space as available:
