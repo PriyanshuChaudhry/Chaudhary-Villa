@@ -1,36 +1,341 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chaudhary Villa — QR-Based Rental Property Website
 
-## Getting Started
+A fast, mobile-first, static rental property website built for **Chaudhary Villa**. Designed specifically for prospective tenants scanning a QR code printed on the physical **TO-LET** board outside the property.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Table of Contents
+
+1. [Architecture & Philosophy](#architecture--philosophy)
+2. [Technology Stack](#technology-stack)
+3. [Project Structure](#project-structure)
+4. [Centralized Property Configuration](#centralized-property-configuration)
+5. [How to Update Property Information](#how-to-update-property-information)
+   - [Changing Room Availability](#1-changing-room-availability)
+   - [Updating Rental Prices](#2-updating-rental-prices)
+   - [Adding Real Photographs](#3-adding-real-photographs)
+   - [Adding Video Tours](#4-adding-video-tours)
+   - [Updating Facilities](#5-updating-facilities)
+   - [Updating House Rules & Charges](#6-updating-house-rules--charges)
+   - [Updating Terms & Conditions](#7-updating-terms--conditions)
+6. [Local Development](#local-development)
+7. [Building for Production](#building-for-production)
+8. [Deploying to GitHub and Vercel](#deploying-to-github-and-vercel)
+9. [Generating & Printing the TO-LET QR Code](#generating--printing-the-to-let-qr-code)
+10. [Important Constraints & Design Decisions](#important-constraints--design-decisions)
+
+---
+
+## Architecture & Philosophy
+
+This website is engineered as a **100% frontend-only static website**:
+
+- **No backend, no database, no server actions, and no authentication.**
+- **No external paid services** (no Supabase, Firebase, MongoDB, or WhatsApp API).
+- **Zero hosting cost:** Employs Next.js Static HTML Export (`output: "export"`), deploying to Vercel's global edge CDN.
+- **Single Source of Truth:** All property data (rooms, prices, availability, facilities, rules, charges, terms) is strictly maintained in one centralized JavaScript file: [`src/data/propertyData.js`](file:///c:/Users/priya/Desktop/Chaudhary%20Villa/src/data/propertyData.js).
+
+When the property owner updates the configuration file and pushes to GitHub, Vercel automatically rebuilds and redeploys the website within seconds.
+
+---
+
+## Technology Stack
+
+- **Framework:** Next.js (App Router, Static Export)
+- **Language:** JavaScript (ES Modules, strictly no TypeScript)
+- **Styling:** Tailwind CSS v4 with custom design tokens (Warm off-white `#FAFAF9`, charcoal text `#1C1917`, vibrant teal accents `#0D9488`)
+- **Icons:** Lucide React
+- **QR Generation:** `qrcode.react` (client-side SVG generation)
+- **Hosting:** Vercel (Static Site Deployment)
+
+---
+
+## Project Structure
+
+All project files live directly in the root workspace folder:
+
+```text
+Chaudhary Villa/
+├── public/
+│   ├── images/              # Property photographs (JPG, PNG, WebP)
+│   ├── videos/              # Optional video tours (MP4)
+│   ├── robots.txt           # Search crawler directives
+│   └── sitemap.xml          # Static SEO XML sitemap
+├── src/
+│   ├── app/
+│   │   ├── globals.css      # Design tokens, Tailwind CSS, utility styles
+│   │   ├── icon.svg         # SVG favicon
+│   │   ├── layout.js        # Global HTML layout and metadata
+│   │   ├── not-found.js     # Friendly 404 page
+│   │   ├── page.js          # Homepage (Hero, Listings, Facilities, Rules, Charges)
+│   │   ├── qr/
+│   │   │   └── page.js      # Printable QR code generator for TO-LET board
+│   │   ├── spaces/[slug]/
+│   │   │   └── page.js      # Individual detail page for each room/utility
+│   │   └── terms/
+│   │       └── page.js      # Full Terms & Conditions page
+│   ├── components/
+│   │   ├── AvailabilityBadge.js  # Available / Unavailable indicator
+│   │   ├── ChargesSection.js     # Deposits, electricity meter info, cleaning
+│   │   ├── FacilitiesList.js     # Shared amenities list
+│   │   ├── Footer.js             # Standard footer
+│   │   ├── Header.js             # Navigation with Quick QR modal trigger
+│   │   ├── Hero.js               # Welcoming hero section
+│   │   ├── HouseRules.js         # Community guidelines
+│   │   ├── Lightbox.js           # Fullscreen modal image viewer
+│   │   ├── PhotoGallery.js       # Thumbnail strip & interactive photo viewer
+│   │   ├── PriceDisplay.js       # Formatted INR pricing component
+│   │   ├── SpaceCard.js          # Card for listings grid
+│   │   └── SpaceGrid.js          # Filterable/responsive grid of listings
+│   ├── data/
+│   │   └── propertyData.js  # ★ SINGLE SOURCE OF TRUTH (Prices, availability, rules)
+│   └── lib/
+│       └── helpers.js       # Formatting, slug resolution, and utilities
+├── jsconfig.json            # Path alias configuration (@/* -> ./src/*)
+├── next.config.mjs          # Next.js static export settings
+├── package.json             # Dependencies and build scripts
+├── AGENTS.md                # Project guidelines & engineering rules
+├── SPEC.md                  # Authoritative functional specification
+└── README.md                # Owner manual & documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Centralized Property Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The file [`src/data/propertyData.js`](file:///c:/Users/priya/Desktop/Chaudhary%20Villa/src/data/propertyData.js) controls **all** data rendered across the website.
 
-## Learn More
+You never need to touch React components or CSS just to edit property information.
 
-To learn more about Next.js, take a look at the following resources:
+### Initial Listings Included:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Space Name | Type | Single Occupancy | Double Occupancy | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **Front Balcony Room** | Room | ₹5,000 / month | ₹6,000 / month | Conservative default: `unavailable` |
+| **Middle Room** | Room | ₹5,000 / month | ₹6,000 / month | Conservative default: `unavailable` |
+| **Back Room** | Room | ₹5,000 / month | ₹6,000 / month | Conservative default: `unavailable` |
+| **Kitchen** | Utility | ₹2,500 / month | N/A | Conservative default: `unavailable` |
+| **Lobby** | Utility | ₹2,000 / month | N/A | Conservative default: `unavailable` |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## How to Update Property Information
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open [`src/data/propertyData.js`](file:///c:/Users/priya/Desktop/Chaudhary%20Villa/src/data/propertyData.js) in your text editor (VS Code, Notepad, etc.).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. Changing Room Availability
+
+Find the `availability` key for the desired space:
+
+```javascript
+// To mark a room as available:
+availability: "available",
+
+// To mark a room as occupied / unavailable:
+availability: "unavailable",
+```
+
+- When `available`, the website shows a green **Available** badge and active details.
+- When `unavailable`, the website shows an amber/gray **Unavailable** badge, informing prospective tenants that the room is currently occupied.
+
+### 2. Updating Rental Prices
+
+Find the `pricing` block for the room:
+
+```javascript
+// For rooms with single and double occupancy:
+pricing: {
+  singleOccupancy: { label: "Single Occupancy", amount: 5500 },
+  doubleOccupancy: { label: "Double Occupancy", amount: 6500 },
+},
+
+// For utilities with flat monthly rent:
+pricing: {
+  monthly: { label: "Monthly Rent", amount: 2800 },
+},
+```
+
+> **Note:** Enter numbers without commas (e.g. `5500`, not `5,500`). The website automatically formats them into Indian Rupee format (`₹5,500`).
+
+### 3. Adding Real Photographs
+
+1. Place your photo files (e.g., `front-room-1.jpg`) into the [`public/images/`](file:///c:/Users/priya/Desktop/Chaudhary%20Villa/public/images) folder.
+2. In `propertyData.js`, add or update the file path in the `images` array:
+
+```javascript
+images: [
+  "/images/front-room-1.jpg",
+  "/images/front-room-2.jpg",
+],
+```
+
+### 4. Adding Video Tours
+
+1. Place your video (MP4 format) into the [`public/videos/`](file:///c:/Users/priya/Desktop/Chaudhary%20Villa/public/videos) folder.
+2. In `propertyData.js`, update the `video` property:
+
+```javascript
+video: "/videos/front-room-tour.mp4",
+// or set to null if no video:
+video: null,
+```
+
+### 5. Updating Facilities
+
+Edit the `facilities` array in `propertyData.js`:
+
+```javascript
+export const facilities = [
+  {
+    name: "Refrigerator",
+    description: "A refrigerator shared by residents for storing food and beverages.",
+    icon: "refrigerator",
+  },
+  {
+    name: "Geyser",
+    description: "A geyser (water heater) is available in the bathroom for hot water.",
+    icon: "flame",
+  },
+];
+```
+
+### 6. Updating House Rules & Charges
+
+Edit `houseRules` and `charges`:
+
+```javascript
+export const houseRules = [
+  "Switch off lights and electrical appliances when they are not in use.",
+];
+
+export const charges = {
+  securityDeposit: {
+    label: "Security Deposit",
+    amount: 10000, // or null if to be confirmed
+    description: "Refundable security deposit paid before move-in.",
+  },
+  electricity: {
+    label: "Electricity Charges",
+    amount: null,
+    description: "Electricity is paid separately by tenants. Each room has a separate electricity meter. Charges are based on actual consumption as per electricity board rates.",
+  },
+  cleaning: {
+    label: "Bathroom Cleaning",
+    amount: null,
+    description: "Bathroom cleaning charges apply once every two months.",
+    frequency: "Once every two months",
+  },
+};
+```
+
+### 7. Updating Terms & Conditions
+
+Edit the `termsAndConditions` array in `propertyData.js`. You can add, edit, or remove sections (Occupancy, Security Deposit, Electricity Billing, Notice Period, etc.).
+
+---
+
+## Local Development
+
+Ensure you have **Node.js 18+** installed on your computer.
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Start the local development server:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Open the site in your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000).
+
+4. **Verify responsive layout:**
+   Press `F12` in your browser and toggle the mobile device toolbar (`Ctrl+Shift+M`) to preview the site on mobile screen dimensions (375px, 414px, etc.).
+
+---
+
+## Building for Production
+
+To test the production build and verify static export:
+
+```bash
+npm run build
+```
+
+This compiles all pages and outputs static HTML/CSS/JS into the `out/` directory:
+- `/` (Home page)
+- `/qr/` (QR generator page)
+- `/terms/` (Terms & conditions page)
+- `/spaces/front-balcony-room/`
+- `/spaces/middle-room/`
+- `/spaces/back-room/`
+- `/spaces/kitchen/`
+- `/spaces/lobby/`
+- `/404.html`
+
+To run the ESLint check:
+```bash
+npm run lint
+```
+
+---
+
+## Deploying to GitHub and Vercel
+
+### Step 1: Push to GitHub
+
+1. Initialize git and commit files:
+   ```bash
+   git add .
+   git commit -m "Chaudhary Villa rental property website"
+   ```
+2. Create a new repository on GitHub (e.g. `chaudhary-villa`).
+3. Add the remote and push:
+   ```bash
+   git remote add origin https://github.com/<your-username>/chaudhary-villa.git
+   git branch -M master
+   git push -u origin master
+   ```
+
+### Step 2: Connect to Vercel
+
+1. Log in to [Vercel](https://vercel.com).
+2. Click **"Add New Project"** and select **"Import Git Repository"**.
+3. Choose your `chaudhary-villa` repository.
+4. Framework Preset will automatically detect **Next.js**.
+5. Click **"Deploy"**.
+
+Within ~45 seconds, your site is live with a free SSL certificate on a URL like `https://chaudhary-villa.vercel.app` (or your custom domain).
+
+### Step 3: Subsequent Updates (Redeploying)
+
+Whenever you change prices or availability in `src/data/propertyData.js`:
+```bash
+git add src/data/propertyData.js
+git commit -m "Update room availability and prices"
+git push
+```
+Vercel detects the push and automatically redeploys the site in under a minute.
+
+---
+
+## Generating & Printing the TO-LET QR Code
+
+1. After deploying to Vercel, copy your live website URL (e.g., `https://chaudhary-villa.vercel.app`).
+2. Visit `/qr` on your deployed site (e.g. `https://chaudhary-villa.vercel.app/qr`).
+3. Paste the URL into the input field.
+4. Click **"Print QR Code"** (or use your browser's Print dialog `Ctrl+P`).
+5. Print the QR code, laminate or protect it against weather, and stick it on your physical **TO-LET** board.
+6. **Important:** Test the QR code using your smartphone's camera before mounting it on the board.
+
+---
+
+## Important Constraints & Design Decisions
+
+1. **No Admin Dashboard:** A static architecture does not have a database or server-side password authentication. This avoids monthly database fees and security vulnerabilities. Property data is updated safely via git commits.
+2. **Indian Rupee Formatting:** All currency values are formatted according to the Indian numbering system (e.g., `₹5,000` / `₹6,000`).
+3. **Conservative Availability:** Rooms default to `unavailable` until the owner explicitly verifies vacancy and sets `availability: "available"`.
+4. **Separate Meters:** Clear disclosure that electricity is billed per individual sub-meter and is separate from base rent.
+5. **No WhatsApp Integration / No WhatsApp Buttons:** Per specification instructions, direct WhatsApp integration is excluded.
