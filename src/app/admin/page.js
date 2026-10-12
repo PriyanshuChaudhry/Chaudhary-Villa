@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   ShieldCheck,
   Lock,
+  LogOut,
   GitBranch,
   CheckCircle2,
   AlertCircle,
@@ -71,9 +72,20 @@ export const navLinks = ${JSON.stringify(navLinks, null, 2)};
 }
 
 export default function AdminPage() {
+  const getActivePin = () => {
+    return process.env.NEXT_PUBLIC_ADMIN_PIN || "chaudhary2026";
+  };
+
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("chaudhary_admin_auth") === "true";
+      const isAuth = localStorage.getItem("chaudhary_admin_auth") === "true";
+      const savedPin = localStorage.getItem("chaudhary_admin_auth_pin");
+      const currentPin = process.env.NEXT_PUBLIC_ADMIN_PIN || "chaudhary2026";
+      // Invalidate existing sessions if the master password was changed in Vercel
+      if (isAuth && savedPin === currentPin) {
+        return true;
+      }
+      return false;
     }
     return false;
   });
@@ -115,15 +127,13 @@ export default function AdminPage() {
   const [statusMessage, setStatusMessage] = useState(null);
   const [copied, setCopied] = useState(false);
 
-  const getActivePin = () => {
-    return process.env.NEXT_PUBLIC_ADMIN_PIN || "chaudhary2026";
-  };
-
   const handleLogin = (e) => {
     e.preventDefault();
-    if (pinInput.trim() === getActivePin()) {
+    const activePin = getActivePin();
+    if (pinInput.trim() === activePin) {
       setIsAuthenticated(true);
       localStorage.setItem("chaudhary_admin_auth", "true");
+      localStorage.setItem("chaudhary_admin_auth_pin", activePin);
       setPinError(false);
     } else {
       setPinError(true);
@@ -133,6 +143,7 @@ export default function AdminPage() {
   const handleLogout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem("chaudhary_admin_auth");
+    localStorage.removeItem("chaudhary_admin_auth_pin");
   };
 
   const saveGitHubSettings = () => {
@@ -424,9 +435,11 @@ export default function AdminPage() {
 
           <button
             onClick={handleLogout}
-            className="text-xs text-stone-400 hover:text-stone-600 px-3 py-1.5 rounded-lg border border-stone-200 hover:bg-stone-50 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 px-3.5 py-1.5 rounded-lg border border-rose-200 transition-colors shadow-2xs cursor-pointer"
+            title="Log out and lock dashboard"
           >
-            Lock Dashboard
+            <LogOut className="w-3.5 h-3.5" />
+            Log Out
           </button>
         </div>
 
