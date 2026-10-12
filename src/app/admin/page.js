@@ -90,21 +90,21 @@ export default function AdminPage() {
   });
   const [ghOwner, setGhOwner] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("chaudhary_gh_owner") || "";
+      return localStorage.getItem("chaudhary_gh_owner") || "PriyanshuChaudhry";
     }
-    return "";
+    return "PriyanshuChaudhry";
   });
   const [ghRepo, setGhRepo] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("chaudhary_gh_repo") || "";
+      return localStorage.getItem("chaudhary_gh_repo") || "Chaudhary-Villa";
     }
-    return "";
+    return "Chaudhary-Villa";
   });
   const [ghBranch, setGhBranch] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("chaudhary_gh_branch") || "master";
+      return localStorage.getItem("chaudhary_gh_branch") || "main";
     }
-    return "master";
+    return "main";
   });
 
   // Editable Property State
