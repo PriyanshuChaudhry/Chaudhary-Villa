@@ -18,12 +18,8 @@ export default function SpaceGrid({ spaces }) {
   const allRoomsUnavailable = areAllRoomsUnavailable(spaces);
   const rooms = getRooms(spaces);
 
-  // Available spaces are shown prominently at the top
+  // Filter strictly for available spaces
   const availableSpaces = spaces.filter((s) => isSpaceAvailable(s));
-  const unavailableSpaces = spaces.filter((s) => !isSpaceAvailable(s));
-
-  // Sort so available spaces are listed first
-  const sortedSpaces = [...availableSpaces, ...unavailableSpaces];
 
   return (
     <section id="spaces" className="scroll-mt-20">
@@ -34,26 +30,28 @@ export default function SpaceGrid({ spaces }) {
             Rental Spaces
           </h2>
           <p className="text-stone-500 mt-1 text-sm">
-            Browse our residential rooms and shared spaces
+            {availableSpaces.length > 0
+              ? "Browse available residential rooms and shared spaces"
+              : "Check current vacancy status at Chaudhary Villa"}
           </p>
         </div>
         <div className="flex items-center gap-2">
           {availableSpaces.length > 0 ? (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-full border border-emerald-200">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-50 text-emerald-800 text-xs font-bold rounded-full border border-emerald-200 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              {availableSpaces.length} of {spaces.length} Available Now
+              {availableSpaces.length} {availableSpaces.length === 1 ? "Space" : "Spaces"} Available Now
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-stone-100 text-stone-600 text-xs font-medium rounded-full">
-              0 of {spaces.length} Available (House Full)
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-stone-100 text-stone-600 text-xs font-semibold rounded-full border border-stone-200">
+              0 Spaces Available (House Full)
             </span>
           )}
         </div>
       </div>
 
-      {/* Empty state: ALL 5 spaces are unavailable (SPEC.md Section 5) */}
+      {/* Empty state: ALL 5 spaces are unavailable */}
       {allSpacesUnavailable && (
-        <div className="text-center py-12 px-6 bg-white rounded-3xl border border-stone-200/90 shadow-sm mb-10">
+        <div className="text-center py-12 px-6 bg-white rounded-3xl border border-stone-200/90 shadow-sm">
           <div className="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200/60 flex items-center justify-center mx-auto mb-4 text-3xl">
             🏠
           </div>
@@ -65,12 +63,12 @@ export default function SpaceGrid({ spaces }) {
           </h3>
           <p className="text-stone-500 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
             All rooms and spaces at Chaudhary Villa are currently occupied.
-            You can still review the rooms, facilities, and rules below, and check back later when a vacancy opens.
+            Please check back later when a vacancy opens.
           </p>
         </div>
       )}
 
-      {/* Room-specific empty state: All 3 ROOMS unavailable, but kitchen/lobby available (SPEC.md Section 5) */}
+      {/* Room-specific empty state: All 3 ROOMS unavailable, but kitchen/lobby available */}
       {!allSpacesUnavailable && allRoomsUnavailable && rooms.length > 0 && (
         <div className="p-4 sm:p-5 bg-amber-50/80 rounded-2xl border border-amber-200 mb-8 flex items-start gap-3">
           <span className="text-xl flex-shrink-0 mt-0.5">ℹ️</span>
@@ -79,18 +77,20 @@ export default function SpaceGrid({ spaces }) {
               Sorry, no rooms are currently available. You can check back later.
             </p>
             <p className="text-amber-700 text-xs mt-0.5">
-              Other spaces (such as kitchen or lobby) may still be available below.
+              Shared spaces (such as kitchen or lobby) currently available for rent are listed below.
             </p>
           </div>
         </div>
       )}
 
-      {/* Space Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {sortedSpaces.map((space) => (
-          <SpaceCard key={space.id} space={space} />
-        ))}
-      </div>
+      {/* Space Cards Grid: Only renders cards for currently AVAILABLE spaces */}
+      {availableSpaces.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {availableSpaces.map((space) => (
+            <SpaceCard key={space.id} space={space} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }

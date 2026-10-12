@@ -93,7 +93,7 @@ export const rentalSpaces = [
     // ── Availability ──
     // Change to "available" when this room is vacant
     // Change to "unavailable" when this room is occupied
-    availability: "unavailable",
+    availability: "available",
 
     // ── Pricing ──
     // Rooms support single and double occupancy pricing
@@ -127,7 +127,7 @@ export const rentalSpaces = [
     type: "room",
     description:
       "A centrally located room within the house, providing a quiet and private living space.",
-    availability: "available",
+    availability: "unavailable",
     pricing: {
       singleOccupancy: { label: "Single Occupancy", amount: 5000 },
       doubleOccupancy: { label: "Double Occupancy", amount: 6000 },
