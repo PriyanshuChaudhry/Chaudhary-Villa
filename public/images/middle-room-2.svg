@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="tileWall" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Wall Background -->
+  <rect width="800" height="500" fill="url(#tileWall)"/>
+
+  <!-- Wall Tiles Grid Lines -->
+  <line x1="0" y1="100" x2="800" y2="100" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="200" x2="800" y2="200" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="300" x2="800" y2="300" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="200" y1="0" x2="200" y2="380" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="380" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="380" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- Floor -->
+  <rect x="0" y="380" width="800" height="120" fill="#E2E8F0"/>
+  <line x1="0" y1="380" x2="800" y2="380" stroke="#CBD5E1" stroke-width="3"/>
+
+  <!-- Geyser (Water Heater) on wall -->
+  <rect x="180" y="60" width="100" height="140" rx="20" fill="#FFFFFF" stroke="#0D9488" stroke-width="3"/>
+  <circle cx="230" cy="115" r="16" fill="#CCFBF1" stroke="#0D9488" stroke-width="2"/>
+  <circle cx="230" cy="115" r="5" fill="#0D9488"/>
+  <line x1="210" y1="200" x2="210" y2="230" stroke="#94A3B8" stroke-width="4"/>
+  <line x1="250" y1="200" x2="250" y2="230" stroke="#EF4444" stroke-width="4"/>
+  <rect x="200" y="75" width="60" height="10" rx="3" fill="#E2E8F0"/>
+
+  <!-- Mirror -->
+  <rect x="360" y="90" width="160" height="180" rx="16" fill="#E0F2FE" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="380" y1="110" x2="480" y2="210" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-opacity="0.6"/>
+
+  <!-- Wash Basin Counter -->
+  <rect x="330" y="290" width="220" height="90" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+  <ellipse cx="440" cy="305" rx="65" ry="18" fill="#F1F5F9" stroke="#94A3B8" stroke-width="2"/>
+  <!-- Tap -->
+  <path d="M440 280 L440 255 Q440 245 430 245 L425 245" fill="none" stroke="#64748B" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Shower head on right -->
+  <line x1="680" y1="60" x2="680" y2="120" stroke="#64748B" stroke-width="4"/>
+  <ellipse cx="680" cy="120" rx="28" ry="10" fill="#94A3B8"/>
+  <line x1="665" y1="125" x2="660" y2="175" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 4"/>
+  <line x1="680" y1="125" x2="680" y2="185" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 4"/>
+  <line x1="695" y1="125" x2="700" y2="175" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 4"/>
+
+  <!-- Label Badge -->
+  <g transform="translate(400, 455)">
+    <rect x="-140" y="-14" width="280" height="28" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="0" y="4" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#0F766E">
+      Bathroom • Equipped with Water Geyser
+    </text>
+  </g>
+</svg>

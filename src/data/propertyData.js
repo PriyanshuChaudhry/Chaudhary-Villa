@@ -93,7 +93,7 @@ export const rentalSpaces = [
     // ── Availability ──
     // Change to "available" when this room is vacant
     // Change to "unavailable" when this room is occupied
-    availability: "available",
+    availability: "unavailable",
 
     // ── Pricing ──
     // Rooms support single and double occupancy pricing
@@ -127,13 +127,14 @@ export const rentalSpaces = [
     type: "room",
     description:
       "A centrally located room within the house, providing a quiet and private living space.",
-    availability: "unavailable",
+    availability: "available",
     pricing: {
       singleOccupancy: { label: "Single Occupancy", amount: 5000 },
       doubleOccupancy: { label: "Double Occupancy", amount: 6000 },
     },
     images: [
       "/images/middle-room-1.svg",
+      "/images/middle-room-2.svg",
     ],
     video: null,
     rules: [],
@@ -183,7 +184,7 @@ export const rentalSpaces = [
     type: "utility",
     description:
       "A common lobby area available for rent, providing additional shared space.",
-    availability: "unavailable",
+    availability: "available",
     pricing: {
       monthly: { label: "Monthly Rent", amount: 2000 },
     },
