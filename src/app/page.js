@@ -26,7 +26,7 @@ export default function HomePage() {
         <Hero />
 
         {/* Content sections */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 space-y-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 space-y-12 sm:space-y-16">
           {/* Rental Spaces Grid */}
           <SpaceGrid spaces={rentalSpaces} />
 

@@ -106,8 +106,8 @@ export const rentalSpaces = [
     // Add your actual property photos here
     // Place image files in the public/images/ folder
     images: [
-      "/images/front-room-1.jpg",
-      "/images/front-room-2.jpg",
+      "/images/front-room-1.svg",
+      "/images/front-room-2.svg",
     ],
 
     // ── Video (optional) ──
@@ -133,7 +133,7 @@ export const rentalSpaces = [
       doubleOccupancy: { label: "Double Occupancy", amount: 6000 },
     },
     images: [
-      "/images/middle-room-1.jpg",
+      "/images/middle-room-1.svg",
     ],
     video: null,
     rules: [],
@@ -152,7 +152,7 @@ export const rentalSpaces = [
       doubleOccupancy: { label: "Double Occupancy", amount: 6000 },
     },
     images: [
-      "/images/back-room-1.jpg",
+      "/images/back-room-1.svg",
     ],
     video: null,
     rules: [],
@@ -170,7 +170,7 @@ export const rentalSpaces = [
       monthly: { label: "Monthly Rent", amount: 2500 },
     },
     images: [
-      "/images/kitchen-1.jpg",
+      "/images/kitchen-1.svg",
     ],
     video: null,
     rules: [],
@@ -188,7 +188,7 @@ export const rentalSpaces = [
       monthly: { label: "Monthly Rent", amount: 2000 },
     },
     images: [
-      "/images/lobby-1.jpg",
+      "/images/lobby-1.svg",
     ],
     video: null,
     rules: [],

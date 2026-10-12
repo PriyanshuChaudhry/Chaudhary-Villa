@@ -123,9 +123,23 @@ You never need to touch React components or CSS just to edit property informatio
 
 Open [`src/data/propertyData.js`](file:///c:/Users/priya/Desktop/Chaudhary%20Villa/src/data/propertyData.js) in your text editor (VS Code, Notepad, etc.).
 
-### 1. Changing Room Availability
+### 1. Changing Room Availability (Two Easy Methods)
 
-Find the `availability` key for the desired space:
+#### Method A: Using Your Phone's Owner Admin Panel (Instant 1-Tap Toggle)
+The fastest and easiest way to change room availability without touching code:
+
+1. On your phone, visit `/admin` on your website (e.g. `https://chaudhary-villa.vercel.app/admin`), or tap the small **Lock icon** in the website footer.
+2. Enter your Admin PIN: `chaudhary2026` (check "Remember on this device" so you don't have to enter it again).
+3. Tap the big toggle switches next to any room:
+   - 🟢 **VACANT (Available)**: Room is marked available and appears on the website with its price.
+   - ⚪ **OCCUPIED (Unavailable)**: Room is marked occupied and hidden from prospective customers.
+4. If all rooms are full, simply tap **"Mark House Full"** to set all rooms occupied in 1 click.
+5. Tap **"Save & Broadcast Changes"** to publish.
+
+> **Zero-Server Cloud Sync:** In the admin screen under *Cloud Broadcast Settings*, you can connect a free GitHub Personal Access Token and click **"1-Click Auto Create Gist"**. Once connected, your phone's toggles update the live website for any customer scanning the QR code in **0.1 seconds**!
+
+#### Method B: Editing the File Directly
+Alternatively, edit [`src/data/propertyData.js`](file:///c:/Users/priya/Desktop/Chaudhary%20Villa/src/data/propertyData.js):
 
 ```javascript
 // To mark a room as available:
@@ -135,8 +149,9 @@ availability: "available",
 availability: "unavailable",
 ```
 
-- When `available`, the website shows a green **Available** badge and active details.
-- When `unavailable`, the website shows an amber/gray **Unavailable** badge, informing prospective tenants that the room is currently occupied.
+- When `available`, the website shows the room with price and details.
+- When `unavailable`, the room is automatically hidden from visitors, avoiding clutter.
+- When **all** rooms are unavailable, the website displays the clean, polite **"HOUSE FULL / No Rooms Currently Available"** status banner with zero clutter or blurred cards.
 
 ### 2. Updating Rental Prices
 

@@ -16,7 +16,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32">
+    <section className="relative py-8 sm:py-16">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-teal-50/40 via-white to-white" />

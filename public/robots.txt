@@ -1,6 +1,7 @@
 # Allow all search engines to crawl the site
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 # Sitemap location (update with your actual domain after deployment)
 # Sitemap: https://your-domain.vercel.app/sitemap.xml
