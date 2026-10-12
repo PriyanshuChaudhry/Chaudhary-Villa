@@ -115,10 +115,19 @@ export default function AdminPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [newPinInput, setNewPinInput] = useState("");
+
+  const getActivePin = () => {
+    if (typeof window !== "undefined") {
+      const custom = localStorage.getItem("chaudhary_custom_pin");
+      if (custom) return custom;
+    }
+    return process.env.NEXT_PUBLIC_ADMIN_PIN || "chaudhary2026";
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (pinInput.trim() === OWNER_PIN) {
+    if (pinInput.trim() === getActivePin()) {
       setIsAuthenticated(true);
       localStorage.setItem("chaudhary_admin_auth", "true");
       setPinError(false);
@@ -130,6 +139,27 @@ export default function AdminPage() {
   const handleLogout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem("chaudhary_admin_auth");
+  };
+
+  const handleChangePin = (e) => {
+    e.preventDefault();
+    if (!newPinInput.trim()) return;
+    localStorage.setItem("chaudhary_custom_pin", newPinInput.trim());
+    setNewPinInput("");
+    setStatusMessage({
+      type: "success",
+      text: "Owner PIN updated! Future logins on this device will require your new PIN.",
+    });
+    setTimeout(() => setStatusMessage(null), 4000);
+  };
+
+  const handleResetPin = () => {
+    localStorage.removeItem("chaudhary_custom_pin");
+    setStatusMessage({
+      type: "info",
+      text: "Owner PIN reset to default ('chaudhary2026').",
+    });
+    setTimeout(() => setStatusMessage(null), 4000);
   };
 
   const saveGitHubSettings = () => {
@@ -713,6 +743,42 @@ export default function AdminPage() {
                 className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-teal-200"
               />
             </div>
+          </div>
+
+          {/* Change PIN Section */}
+          <div className="mt-8 pt-6 border-t border-stone-200/80">
+            <div className="flex items-center gap-2 mb-2">
+              <Key className="w-4 h-4 text-stone-600" />
+              <h3 className="text-sm font-bold text-charcoal">
+                Change Owner PIN
+              </h3>
+            </div>
+            <p className="text-stone-500 text-xs mb-4">
+              Set a private PIN for this device. It is stored securely on your browser and will never be published to GitHub.
+            </p>
+
+            <form onSubmit={handleChangePin} className="flex flex-col sm:flex-row items-center gap-3">
+              <input
+                type="password"
+                placeholder="Enter new private PIN"
+                value={newPinInput}
+                onChange={(e) => setNewPinInput(e.target.value)}
+                className="w-full sm:w-64 px-3.5 py-2 rounded-xl border border-stone-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-teal-200"
+              />
+              <button
+                type="submit"
+                className="w-full sm:w-auto px-4 py-2 bg-stone-800 hover:bg-stone-900 text-white text-xs font-bold rounded-xl transition-colors"
+              >
+                Update PIN
+              </button>
+              <button
+                type="button"
+                onClick={handleResetPin}
+                className="text-xs text-stone-400 hover:text-stone-600 underline ml-auto"
+              >
+                Reset to default
+              </button>
+            </form>
           </div>
         </section>
       </main>
