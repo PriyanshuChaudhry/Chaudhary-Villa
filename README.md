@@ -351,8 +351,12 @@ Vercel detects the push and automatically redeploys the site in under a minute.
 
 ## Important Constraints & Design Decisions
 
-1. **No Admin Dashboard:** A static architecture does not have a database or server-side password authentication. This avoids monthly database fees and security vulnerabilities. Property data is updated safely via git commits.
+1. **Owner Admin Portal (`/admin`):** Chaudhary Villa includes a lightweight, secure client-side admin portal at `/admin`. It allows the owner to toggle room availability ("Available" / "Occupied" / "House Full") and sync updates directly to GitHub via the GitHub Contents API without any backend server. Access is protected by a PIN configured via the `NEXT_PUBLIC_ADMIN_PIN` environment variable in Vercel (or local `.env`).
 2. **Indian Rupee Formatting:** All currency values are formatted according to the Indian numbering system (e.g., `₹5,000` / `₹6,000`).
 3. **Conservative Availability:** Rooms default to `unavailable` until the owner explicitly verifies vacancy and sets `availability: "available"`.
 4. **Separate Meters:** Clear disclosure that electricity is billed per individual sub-meter and is separate from base rent.
 5. **No WhatsApp Integration / No WhatsApp Buttons:** Per specification instructions, direct WhatsApp integration is excluded.
+6. **Environment Variable Configuration in Vercel:**
+   - In your Vercel Dashboard, navigate to **Project Settings** → **Environment Variables**.
+   - Add Key: `NEXT_PUBLIC_ADMIN_PIN`, Value: your custom secret PIN.
+   - Click **Save** and trigger a **Redeploy** to apply the updated PIN to your live website.

@@ -258,5 +258,9 @@ export const navLinks = [
   {
     "label": "Terms",
     "href": "/terms"
+  },
+  {
+    "label": "Admin",
+    "href": "/admin"
   }
 ];
