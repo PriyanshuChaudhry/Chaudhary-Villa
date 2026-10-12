@@ -32,7 +32,7 @@ import {
   navLinks,
 } from "@/data/propertyData";
 
-const OWNER_PIN = "chaudhary2026";
+// Centralized Property Configuration serializer
 
 /**
  * Generate formatted JavaScript content for src/data/propertyData.js
@@ -157,7 +157,7 @@ export default function AdminPage() {
     localStorage.removeItem("chaudhary_custom_pin");
     setStatusMessage({
       type: "info",
-      text: "Owner PIN reset to default ('chaudhary2026').",
+      text: "Owner PIN reset to default.",
     });
     setTimeout(() => setStatusMessage(null), 4000);
   };
@@ -397,7 +397,7 @@ export default function AdminPage() {
               <div>
                 <input
                   type="password"
-                  placeholder="Enter Owner PIN (default: chaudhary2026)"
+                  placeholder="Enter Owner PIN"
                   value={pinInput}
                   onChange={(e) => setPinInput(e.target.value)}
                   className={`w-full px-4 py-3 rounded-xl border text-center text-lg tracking-widest bg-stone-50 focus:outline-none focus:ring-2 ${
