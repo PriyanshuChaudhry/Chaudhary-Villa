@@ -41,17 +41,17 @@ export default function FacilitiesList({ facilities, variant = "full" }) {
           return (
             <div
               key={index}
-              className="flex items-start gap-4 p-5 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200"
+              className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-stone-200/80 shadow-sm hover:shadow-md transition-all duration-200"
             >
-              <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-teal-50 flex items-center justify-center">
-                <IconComponent className="w-5 h-5 text-teal-600" />
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-teal-50 border border-teal-100/60 flex items-center justify-center">
+                <IconComponent className="w-5 h-5 text-teal-700" />
               </div>
               <div>
-                <h3 className="font-semibold text-charcoal text-sm">
+                <h3 className="font-bold text-charcoal text-base">
                   {facility.name}
                 </h3>
                 {variant === "full" && facility.description && (
-                  <p className="text-gray-500 text-sm mt-1">
+                  <p className="text-stone-500 text-sm mt-1 leading-relaxed">
                     {facility.description}
                   </p>
                 )}

@@ -73,29 +73,29 @@ export default function ChargesSection({ charges, compact = false }) {
           return (
             <div
               key={index}
-              className="flex items-start gap-4 p-5 bg-white rounded-xl border border-gray-100 shadow-sm"
+              className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-stone-200/80 shadow-sm"
             >
               <div
-                className={`flex-shrink-0 w-11 h-11 rounded-xl ${colors.bg} flex items-center justify-center`}
+                className={`flex-shrink-0 w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center`}
               >
                 <Icon className={`w-5 h-5 ${colors.text}`} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between gap-2 flex-wrap">
-                  <h3 className="font-semibold text-charcoal text-sm">
+                  <h3 className="font-bold text-charcoal text-base">
                     {item.label}
                   </h3>
-                  <span className="text-sm font-semibold text-charcoal">
+                  <span className="text-sm font-bold text-charcoal bg-stone-50 px-2.5 py-1 rounded-lg border border-stone-200/50">
                     {formatPrice(item.amount)}
                   </span>
                 </div>
                 {item.description && (
-                  <p className="text-gray-500 text-sm mt-1 leading-relaxed">
+                  <p className="text-stone-500 text-sm mt-1.5 leading-relaxed">
                     {item.description}
                   </p>
                 )}
                 {item.extra && (
-                  <p className="text-gray-400 text-xs mt-1">{item.extra}</p>
+                  <p className="text-stone-400 text-xs mt-1.5 font-medium">{item.extra}</p>
                 )}
               </div>
             </div>

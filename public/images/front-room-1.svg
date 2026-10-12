@@ -1,8 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <rect width="800" height="600" fill="#f5f5f4"/>
-  <rect x="300" y="200" width="200" height="160" rx="12" fill="#e7e5e4" stroke="#d6d3d1" stroke-width="2"/>
-  <circle cx="360" cy="260" r="20" fill="#d6d3d1"/>
-  <polygon points="320,340 400,270 480,340" fill="#d6d3d1"/>
-  <text x="400" y="400" text-anchor="middle" fill="#a8a29e" font-family="system-ui" font-size="16" font-weight="500">Front Balcony Room — Photo 1</text>
-  <text x="400" y="425" text-anchor="middle" fill="#d6d3d1" font-family="system-ui" font-size="12">Replace with actual property photo</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0FDF4"/>
+    </linearGradient>
+    <linearGradient id="wallGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5F5F4"/>
+      <stop offset="100%" stop-color="#E7E5E4"/>
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Wall -->
+  <rect width="800" height="500" fill="url(#wallGrad)"/>
+
+  <!-- Balcony Window & Door Frame -->
+  <rect x="180" y="70" width="440" height="340" rx="16" fill="url(#skyGrad)" stroke="#D6D3D1" stroke-width="4"/>
+  <line x1="400" y1="70" x2="400" y2="410" stroke="#CBD5E1" stroke-width="3"/>
+
+  <!-- Balcony Railing -->
+  <rect x="160" y="300" width="480" height="110" fill="#FFFFFF" fill-opacity="0.3"/>
+  <line x1="160" y1="300" x2="640" y2="300" stroke="#0D9488" stroke-width="5"/>
+  <line x1="160" y1="400" x2="640" y2="400" stroke="#0D9488" stroke-width="4"/>
+  <!-- Railing bars -->
+  <line x1="200" y1="300" x2="200" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="240" y1="300" x2="240" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="280" y1="300" x2="280" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="320" y1="300" x2="320" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="360" y1="300" x2="360" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="400" y1="300" x2="400" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="440" y1="300" x2="440" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="480" y1="300" x2="480" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="520" y1="300" x2="520" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="560" y1="300" x2="560" y2="400" stroke="#0D9488" stroke-width="2"/>
+  <line x1="600" y1="300" x2="600" y2="400" stroke="#0D9488" stroke-width="2"/>
+
+  <!-- Potted Plant on Balcony -->
+  <ellipse cx="230" cy="385" rx="14" ry="5" fill="#78716C"/>
+  <path d="M220 385 L224 410 L236 410 L240 385 Z" fill="#D97706"/>
+  <circle cx="230" cy="370" r="16" fill="#10B981"/>
+  <circle cx="222" cy="362" r="12" fill="#059669"/>
+  <circle cx="238" cy="364" r="11" fill="#34D399"/>
+
+  <!-- Sunlight ray -->
+  <polygon points="420,70 600,70 700,450 480,450" fill="#FEF08A" fill-opacity="0.25"/>
+
+  <!-- Room Interior Floor -->
+  <rect x="0" y="440" width="800" height="60" fill="#E7E5E4"/>
+  <line x1="0" y1="440" x2="800" y2="440" stroke="#D6D3D1" stroke-width="2"/>
+
+  <!-- Label Badge -->
+  <g transform="translate(400, 465)">
+    <rect x="-140" y="-14" width="280" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.9" stroke="#E2E8F0"/>
+    <text x="0" y="4" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#0F766E">
+      Front Balcony Room • Natural Light &amp; View
+    </text>
+  </g>
 </svg>

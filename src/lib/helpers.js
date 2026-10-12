@@ -36,18 +36,31 @@ export function getUtilities(spaces) {
 }
 
 /**
+ * Robustly check if a rental space is currently available.
+ * Handles "available", "Available", "AVAILABLE", "vacant", etc., safely trimming whitespace.
+ */
+export function isSpaceAvailable(spaceOrStatus) {
+  if (!spaceOrStatus) return false;
+  const status =
+    typeof spaceOrStatus === "string" ? spaceOrStatus : spaceOrStatus.availability;
+  if (!status) return false;
+  const normalized = String(status).trim().toLowerCase();
+  return normalized === "available" || normalized === "vacant" || normalized === "yes";
+}
+
+/**
  * Check if all rooms are unavailable.
  */
 export function areAllRoomsUnavailable(spaces) {
   const rooms = getRooms(spaces);
-  return rooms.every((room) => room.availability === "unavailable");
+  return rooms.length > 0 && rooms.every((room) => !isSpaceAvailable(room));
 }
 
 /**
  * Check if all spaces (rooms + utilities) are unavailable.
  */
 export function areAllSpacesUnavailable(spaces) {
-  return spaces.every((space) => space.availability === "unavailable");
+  return spaces.length > 0 && spaces.every((space) => !isSpaceAvailable(space));
 }
 
 /**

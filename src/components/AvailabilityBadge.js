@@ -1,11 +1,11 @@
-"use client";
+import { isSpaceAvailable } from "@/lib/helpers";
 
 /**
  * AvailabilityBadge — Reusable badge showing "Available" or "Unavailable".
  * Used on listing cards and detail pages throughout the site.
  */
 export default function AvailabilityBadge({ status, size = "default" }) {
-  const isAvailable = status === "available";
+  const isAvailable = isSpaceAvailable(status);
 
   const sizeClasses = {
     small: "px-2 py-0.5 text-xs",

@@ -16,7 +16,7 @@ import {
   charges,
   propertyInfo,
 } from "@/data/propertyData";
-import { getSpaceBySlug } from "@/lib/helpers";
+import { getSpaceBySlug, isSpaceAvailable } from "@/lib/helpers";
 
 /**
  * Generate static params for all space pages at build time.
@@ -120,11 +120,10 @@ export default async function SpaceDetailPage({ params }) {
             </div>
 
             {/* Unavailable notice */}
-            {space.availability === "unavailable" && (
-              <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-                <p className="text-gray-500 text-sm">
-                  <strong className="text-gray-700">Currently Unavailable</strong>
-                  <br />
+            {!isSpaceAvailable(space) && (
+              <div className="p-4 bg-amber-50/80 rounded-2xl border border-amber-200">
+                <p className="text-amber-800 text-sm">
+                  <strong className="text-amber-900 block font-semibold mb-0.5">Currently Unavailable / Occupied</strong>
                   This space is not available for rent at this time. Please check
                   back later for updates.
                 </p>
@@ -132,9 +131,9 @@ export default async function SpaceDetailPage({ params }) {
             )}
 
             {/* Pricing */}
-            <div className="p-5 bg-white rounded-xl border border-gray-100 shadow-sm">
-              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                Pricing
+            <div className="p-5 sm:p-6 bg-white rounded-2xl border border-stone-200/80 shadow-sm">
+              <h3 className="text-xs font-bold text-stone-400 uppercase tracking-wider mb-3">
+                Monthly Pricing
               </h3>
               <PriceDisplay
                 pricing={space.pricing}
@@ -144,9 +143,9 @@ export default async function SpaceDetailPage({ params }) {
             </div>
 
             {/* Charges */}
-            <div className="p-5 bg-white rounded-xl border border-gray-100 shadow-sm">
-              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                Additional Charges
+            <div className="p-5 sm:p-6 bg-white rounded-2xl border border-stone-200/80 shadow-sm">
+              <h3 className="text-xs font-bold text-stone-400 uppercase tracking-wider mb-3">
+                Additional Charges & Electricity
               </h3>
               <ChargesSection charges={charges} compact />
             </div>
@@ -161,12 +160,13 @@ export default async function SpaceDetailPage({ params }) {
             </div>
 
             {/* Terms link */}
-            <div className="pt-4 border-t border-gray-100">
+            <div className="pt-4 border-t border-stone-200/60">
               <Link
                 href="/terms"
-                className="inline-flex items-center text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors"
+                className="inline-flex items-center text-sm text-teal-700 hover:text-teal-800 font-semibold transition-colors group"
               >
-                View full Terms & Conditions →
+                <span>View full Terms & Conditions</span>
+                <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>
           </div>

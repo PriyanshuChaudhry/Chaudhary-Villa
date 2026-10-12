@@ -1,8 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <rect width="800" height="600" fill="#f5f5f4"/>
-  <rect x="300" y="200" width="200" height="160" rx="12" fill="#e7e5e4" stroke="#d6d3d1" stroke-width="2"/>
-  <circle cx="360" cy="260" r="20" fill="#d6d3d1"/>
-  <polygon points="320,340 400,270 480,340" fill="#d6d3d1"/>
-  <text x="400" y="400" text-anchor="middle" fill="#a8a29e" font-family="system-ui" font-size="16" font-weight="500">Back Room — Photo 1</text>
-  <text x="400" y="425" text-anchor="middle" fill="#d6d3d1" font-family="system-ui" font-size="12">Replace with actual property photo</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="gardenSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#DCFCE7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Wall -->
+  <rect width="800" height="500" fill="#F8FAFC"/>
+
+  <!-- Back Window overlooking Garden Greenery -->
+  <rect x="260" y="50" width="280" height="190" rx="12" fill="url(#gardenSky)" stroke="#CBD5E1" stroke-width="4"/>
+  <!-- Garden Greenery outside window -->
+  <circle cx="340" cy="180" r="45" fill="#22C55E" fill-opacity="0.8"/>
+  <circle cx="440" cy="170" r="50" fill="#16A34A" fill-opacity="0.8"/>
+  <circle cx="400" cy="190" r="40" fill="#15803D" fill-opacity="0.8"/>
+  <!-- Window Panes -->
+  <line x1="400" y1="50" x2="400" y2="240" stroke="#CBD5E1" stroke-width="3"/>
+  <line x1="260" y1="145" x2="540" y2="145" stroke="#CBD5E1" stroke-width="3"/>
+
+  <!-- Bed Setup -->
+  <rect x="220" y="270" width="360" height="50" rx="8" fill="#1E293B"/>
+  <rect x="230" y="290" width="340" height="100" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2"/>
+  <rect x="250" y="300" width="120" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <rect x="430" y="300" width="120" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <rect x="230" y="340" width="340" height="50" rx="6" fill="#0D9488"/>
+
+  <!-- Floor -->
+  <rect x="0" y="390" width="800" height="110" fill="#F1F5F9"/>
+  <line x1="0" y1="390" x2="800" y2="390" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- Label Badge -->
+  <g transform="translate(400, 455)">
+    <rect x="-140" y="-14" width="280" height="28" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="0" y="4" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#0F766E">
+      Back Room • Quiet Garden-Side Ambience
+    </text>
+  </g>
 </svg>

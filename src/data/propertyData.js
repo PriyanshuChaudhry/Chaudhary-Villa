@@ -127,7 +127,7 @@ export const rentalSpaces = [
     type: "room",
     description:
       "A centrally located room within the house, providing a quiet and private living space.",
-    availability: "unavailable",
+    availability: "available",
     pricing: {
       singleOccupancy: { label: "Single Occupancy", amount: 5000 },
       doubleOccupancy: { label: "Double Occupancy", amount: 6000 },

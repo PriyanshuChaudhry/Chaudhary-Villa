@@ -55,26 +55,26 @@ export default function TermsPage() {
         </div>
 
         {/* Terms sections */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {termsAndConditions.map((section, sectionIndex) => (
             <div
               key={sectionIndex}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+              className="bg-white rounded-2xl border border-stone-200/80 shadow-sm overflow-hidden"
             >
-              <div className="px-6 py-4 bg-gray-50 border-b border-gray-100">
-                <h2 className="text-base font-semibold text-charcoal flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-teal-100 text-teal-700 text-xs font-bold flex items-center justify-center">
+              <div className="px-6 py-4 bg-stone-50/90 border-b border-stone-200/60">
+                <h2 className="text-base font-bold text-charcoal flex items-center gap-2.5">
+                  <span className="w-6 h-6 rounded-full bg-teal-100 text-teal-800 text-xs font-extrabold flex items-center justify-center">
                     {sectionIndex + 1}
                   </span>
                   {section.title}
                 </h2>
               </div>
               <div className="p-6">
-                <ul className="space-y-3">
+                <ul className="space-y-3.5">
                   {section.terms.map((term, termIndex) => (
                     <li key={termIndex} className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-teal-400 mt-2" />
-                      <span className="text-gray-600 text-sm leading-relaxed">
+                      <span className="flex-shrink-0 w-2 h-2 rounded-full bg-teal-500 mt-2" />
+                      <span className="text-stone-600 text-sm leading-relaxed">
                         {term}
                       </span>
                     </li>
@@ -86,8 +86,8 @@ export default function TermsPage() {
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-10 p-5 bg-gray-50 rounded-2xl border border-gray-100 text-center">
-          <p className="text-gray-400 text-xs">
+        <div className="mt-10 p-5 bg-stone-100/70 rounded-2xl border border-stone-200/60 text-center">
+          <p className="text-stone-500 text-xs leading-relaxed">
             Last updated: The terms reflect the latest version in the property
             configuration. For questions or clarifications, please contact the
             property owner directly.
