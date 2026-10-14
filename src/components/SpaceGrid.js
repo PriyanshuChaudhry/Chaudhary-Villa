@@ -22,7 +22,7 @@ export default function SpaceGrid({ spaces }) {
   const availableSpaces = spaces.filter((s) => isSpaceAvailable(s));
 
   return (
-    <section id="spaces" className="scroll-mt-20">
+    <section id="spaces" className="scroll-mt-20 m-4">
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-8 gap-2">
         <div>
@@ -94,3 +94,4 @@ export default function SpaceGrid({ spaces }) {
     </section>
   );
 }
+

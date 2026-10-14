@@ -13,15 +13,15 @@
 
 export const propertyInfo = {
   "name": "Chaudhary Villa",
-  "tagline": "Boys PG & Residential Rental Spaces",
-  "locality": "India",
-  "seoDescription": "Affordable boys PG and residential rental spaces at Chaudhary Villa. View photos, check availability, prices, facilities, and house rules.",
+  "tagline": "Home Sweet Home",
+  "locality": "Lucknow, India",
+  "seoDescription": "Affordable residential rental spaces at Chaudhary Villa. View photos, check availability, prices, facilities, and house rules.",
   "ogImage": "/images/og-image.jpg"
 };
 
 export const heroContent = {
   "headline": "Find Your Space. Feel at Home.",
-  "subtitle": "Affordable residential rental spaces for boys. View room photos, check live availability, compare prices, and explore facilities & house rules — all in one place.",
+  "subtitle": "Affordable residential rental spaces for boys. Please check availability, view photos compare prices, and explore facilities & house rules, all in one place.",
   "ctaText": "View Available Spaces"
 };
 
@@ -32,7 +32,7 @@ export const rentalSpaces = [
     "name": "Front Balcony Room",
     "type": "room",
     "description": "A well-ventilated room with a front-facing balcony, offering natural light and a pleasant view. Comes fully furnished with bed, table, chair, and racks.",
-    "availability": "available",
+    "availability": "unavailable",
     "pricing": {
       "singleOccupancy": {
         "label": "Single Occupancy",
@@ -92,7 +92,7 @@ export const rentalSpaces = [
     "name": "Back Room",
     "type": "room",
     "description": "A room located at the back of the house, offering a quieter environment away from the street. Comes fully furnished with bed, table, chair, and racks.",
-    "availability": "available",
+    "availability": "unavailable",
     "pricing": {
       "singleOccupancy": {
         "label": "Single Occupancy",
@@ -117,10 +117,10 @@ export const rentalSpaces = [
   {
     "id": "kitchen",
     "slug": "kitchen",
-    "name": "Kitchen Space",
+    "name": "Mini Room",
     "type": "budget",
     "description": "A compact budget-friendly living space with a wooden bed, ideal for individuals seeking affordable accommodation. This is not a shared cooking kitchen — it is a small room available for rent at a lower price.",
-    "availability": "available",
+    "availability": "unavailable",
     "pricing": {
       "monthly": {
         "label": "Monthly Rent",
@@ -324,8 +324,8 @@ export const termsAndConditions = [
 
 export const footerContent = {
   "text": "Chaudhary Villa",
-  "tagline": "Boys PG & Residential Rental Spaces",
-  "location": "India"
+  "tagline": "Residential Rental Spaces",
+  "location": "Lucknow, India"
 };
 
 export const navLinks = [
