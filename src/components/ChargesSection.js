@@ -12,11 +12,6 @@ export default function ChargesSection({ charges, compact = false }) {
 
   const chargeItems = [
     {
-      ...charges.securityDeposit,
-      icon: CircleDollarSign,
-      color: "blue",
-    },
-    {
       ...charges.electricity,
       icon: Zap,
       color: "yellow",

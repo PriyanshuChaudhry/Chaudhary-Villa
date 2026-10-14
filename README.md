@@ -6,23 +6,30 @@ A fast, mobile-first, static rental property website built for **Chaudhary Villa
 
 ## Table of Contents
 
-1. [Architecture & Philosophy](#architecture--philosophy)
-2. [Technology Stack](#technology-stack)
-3. [Project Structure](#project-structure)
-4. [Centralized Property Configuration](#centralized-property-configuration)
-5. [How to Update Property Information](#how-to-update-property-information)
-   - [Changing Room Availability](#1-changing-room-availability)
-   - [Updating Rental Prices](#2-updating-rental-prices)
-   - [Adding Real Photographs](#3-adding-real-photographs)
-   - [Adding Video Tours](#4-adding-video-tours)
-   - [Updating Facilities](#5-updating-facilities)
-   - [Updating House Rules & Charges](#6-updating-house-rules--charges)
-   - [Updating Terms & Conditions](#7-updating-terms--conditions)
-6. [Local Development](#local-development)
-7. [Building for Production](#building-for-production)
-8. [Deploying to GitHub and Vercel](#deploying-to-github-and-vercel)
-9. [Generating & Printing the TO-LET QR Code](#generating--printing-the-to-let-qr-code)
-10. [Important Constraints & Design Decisions](#important-constraints--design-decisions)
+- [Chaudhary Villa — QR-Based Rental Property Website](#chaudhary-villa--qr-based-rental-property-website)
+  - [Table of Contents](#table-of-contents)
+  - [Architecture \& Philosophy](#architecture--philosophy)
+  - [Technology Stack](#technology-stack)
+  - [Project Structure](#project-structure)
+  - [Centralized Property Configuration](#centralized-property-configuration)
+    - [Initial Listings Included:](#initial-listings-included)
+  - [How to Update Property Information](#how-to-update-property-information)
+    - [1. Changing Room Availability](#1-changing-room-availability)
+      - [Method A: Using the Owner Admin Portal (`/admin`)](#method-a-using-the-owner-admin-portal-admin)
+      - [Method B: Editing `src/data/propertyData.js` Directly](#method-b-editing-srcdatapropertydatajs-directly)
+    - [2. Updating Rental Prices](#2-updating-rental-prices)
+    - [3. Adding Real Photographs](#3-adding-real-photographs)
+    - [4. Adding Video Tours](#4-adding-video-tours)
+    - [5. Updating Facilities](#5-updating-facilities)
+    - [7. Updating Terms \& Conditions](#7-updating-terms--conditions)
+  - [Local Development](#local-development)
+  - [Building for Production](#building-for-production)
+  - [Deploying to GitHub and Vercel](#deploying-to-github-and-vercel)
+    - [Step 1: Push to GitHub](#step-1-push-to-github)
+    - [Step 2: Connect to Vercel](#step-2-connect-to-vercel)
+    - [Step 3: Subsequent Updates (Redeploying)](#step-3-subsequent-updates-redeploying)
+  - [Generating \& Printing the TO-LET QR Code](#generating--printing-the-to-let-qr-code)
+  - [Important Constraints \& Design Decisions](#important-constraints--design-decisions)
 
 ---
 
@@ -129,7 +136,7 @@ You have two convenient methods:
 
 #### Method A: Using the Owner Admin Portal (`/admin`)
 1. On your phone or computer, open `/admin` (or tap the small **Lock icon** in the website footer).
-2. Enter the Owner PIN: `chaudhary2026`.
+2. Enter the Owner PIN: ``.
 3. Tap the toggle switches to mark rooms as **Available (Vacant)** or **Unavailable (Occupied)**, or click **"Mark House Full"** with 1 click.
 4. Adjust prices if needed.
 5. Choose your action:
@@ -216,34 +223,7 @@ export const facilities = [
 ];
 ```
 
-### 6. Updating House Rules & Charges
 
-Edit `houseRules` and `charges`:
-
-```javascript
-export const houseRules = [
-  "Switch off lights and electrical appliances when they are not in use.",
-];
-
-export const charges = {
-  securityDeposit: {
-    label: "Security Deposit",
-    amount: 10000, // or null if to be confirmed
-    description: "Refundable security deposit paid before move-in.",
-  },
-  electricity: {
-    label: "Electricity Charges",
-    amount: null,
-    description: "Electricity is paid separately by tenants. Each room has a separate electricity meter. Charges are based on actual consumption as per electricity board rates.",
-  },
-  cleaning: {
-    label: "Bathroom Cleaning",
-    amount: null,
-    description: "Bathroom cleaning charges apply once every two months.",
-    frequency: "Once every two months",
-  },
-};
-```
 
 ### 7. Updating Terms & Conditions
 

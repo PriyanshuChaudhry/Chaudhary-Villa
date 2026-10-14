@@ -45,11 +45,11 @@ export default function TermsPage() {
             {propertyInfo.name}. These terms apply to all rental spaces unless
             stated otherwise.
           </p>
-          <div className="mt-4 p-3 bg-amber-50/60 rounded-xl border border-amber-100">
-            <p className="text-amber-700 text-xs">
-              <strong>Note:</strong> Some terms are samples and are subject to
-              confirmation by the property owner. Please discuss specific
-              conditions directly with the owner before finalizing.
+          <div className="mt-4 p-3 bg-teal-50/60 rounded-xl border border-teal-100">
+            <p className="text-teal-700 text-xs">
+              <strong>Note:</strong> These terms are set by the property owner
+              and apply to all tenants. For any clarification, please contact the
+              owner directly.
             </p>
           </div>
         </div>

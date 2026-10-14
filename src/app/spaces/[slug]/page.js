@@ -108,7 +108,7 @@ export default async function SpaceDetailPage({ params }) {
               <div className="flex items-center gap-3 mb-3">
                 <AvailabilityBadge status={space.availability} size="large" />
                 <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
-                  {space.type === "room" ? "Room" : "Utility Space"}
+                  {space.type === "room" ? "Room" : "Budget Space"}
                 </span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-bold text-charcoal">
@@ -117,6 +117,21 @@ export default async function SpaceDetailPage({ params }) {
               <p className="text-gray-500 mt-2 leading-relaxed">
                 {space.description}
               </p>
+
+              {/* Space-specific highlights */}
+              {space.highlights && space.highlights.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {space.highlights.map((highlight, idx) => (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-50 text-teal-800 text-xs font-medium rounded-full border border-teal-100/80"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
+                      {highlight}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Unavailable notice */}

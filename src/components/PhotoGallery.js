@@ -8,6 +8,7 @@ import {
   Maximize2,
   Camera,
 } from "lucide-react";
+import Image from "next/image";
 import Lightbox from "./Lightbox";
 
 /**
@@ -107,13 +108,14 @@ export default function PhotoGallery({ images = [], spaceName = "Space" }) {
           </div>
         ) : (
           <>
-            <img
+            <Image
               src={currentImage}
               alt={`${spaceName} - Photo ${mainIndex + 1}`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-              loading="lazy"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              sizes="(max-width: 640px) 100vw, 800px"
               onError={() => handleImageError(mainIndex)}
-              draggable="false"
+              draggable={false}
             />
 
             {/* Subtle Gradient Overlays for controls readability */}
@@ -199,7 +201,7 @@ export default function PhotoGallery({ images = [], spaceName = "Space" }) {
               type="button"
               onClick={() => setMainIndex(index)}
               className={`
-                flex-shrink-0 w-20 h-16 sm:w-24 sm:h-20 rounded-2xl overflow-hidden 
+                relative flex-shrink-0 w-20 h-16 sm:w-24 sm:h-20 rounded-2xl overflow-hidden 
                 transition-all duration-200 border
                 ${
                   index === mainIndex
@@ -209,11 +211,12 @@ export default function PhotoGallery({ images = [], spaceName = "Space" }) {
               `}
               aria-label={`View photo ${index + 1}`}
             >
-              <img
+              <Image
                 src={img}
                 alt={`${spaceName} thumbnail ${index + 1}`}
-                className="w-full h-full object-cover"
-                loading="lazy"
+                fill
+                className="object-cover"
+                sizes="96px"
               />
             </button>
           ))}

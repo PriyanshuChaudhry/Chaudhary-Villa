@@ -13,15 +13,15 @@
 
 export const propertyInfo = {
   "name": "Chaudhary Villa",
-  "tagline": "Residential Rental Spaces",
+  "tagline": "Boys PG & Residential Rental Spaces",
   "locality": "India",
-  "seoDescription": "Explore rental spaces at Chaudhary Villa. View photos, check availability, prices, facilities, and house rules.",
+  "seoDescription": "Affordable boys PG and residential rental spaces at Chaudhary Villa. View photos, check availability, prices, facilities, and house rules.",
   "ogImage": "/images/og-image.jpg"
 };
 
 export const heroContent = {
   "headline": "Find Your Space. Feel at Home.",
-  "subtitle": "Explore our rental spaces, view photos, check prices, and learn about the facilities and house rules.",
+  "subtitle": "Affordable residential rental spaces for boys. View room photos, check live availability, compare prices, and explore facilities & house rules — all in one place.",
   "ctaText": "View Available Spaces"
 };
 
@@ -31,8 +31,8 @@ export const rentalSpaces = [
     "slug": "front-balcony-room",
     "name": "Front Balcony Room",
     "type": "room",
-    "description": "A well-ventilated room with a front-facing balcony, offering natural light and a pleasant view.",
-    "availability": "unavailable",
+    "description": "A well-ventilated room with a front-facing balcony, offering natural light and a pleasant view. Comes fully furnished with bed, table, chair, and racks.",
+    "availability": "available",
     "pricing": {
       "singleOccupancy": {
         "label": "Single Occupancy",
@@ -43,6 +43,11 @@ export const rentalSpaces = [
         "amount": 6000
       }
     },
+    "highlights": [
+      "Front-facing balcony with natural light",
+      "Separate electricity meter (₹9/unit)",
+      "Furnished — bed, table, chair & racks provided"
+    ],
     "images": [
       "/images/front-room-1.svg",
       "/images/front-room-2.svg"
@@ -55,7 +60,7 @@ export const rentalSpaces = [
     "slug": "middle-room",
     "name": "Middle Room",
     "type": "room",
-    "description": "A centrally located room within the house, providing a quiet and private living space.",
+    "description": "A centrally located room within the house, providing a quiet and private living space. Comes fully furnished with bed, table, chair, and racks.",
     "availability": "available",
     "pricing": {
       "singleOccupancy": {
@@ -67,9 +72,16 @@ export const rentalSpaces = [
         "amount": 6000
       }
     },
+    "highlights": [
+      "Quiet & private central location",
+      "Separate electricity meter (₹9/unit)",
+      "Furnished — bed, table, chair & racks provided"
+    ],
     "images": [
-      "/images/middle-room-1.svg",
-      "/images/middle-room-2.svg"
+      "/images/middle-room-1.jpeg",
+      "/images/middle-room-2.jpeg",
+      "/images/middle-room-3.jpeg",
+      "/images/middle-room-4.jpeg"
     ],
     "video": null,
     "rules": []
@@ -79,8 +91,8 @@ export const rentalSpaces = [
     "slug": "back-room",
     "name": "Back Room",
     "type": "room",
-    "description": "A room located at the back of the house, offering a quieter environment away from the street.",
-    "availability": "unavailable",
+    "description": "A room located at the back of the house, offering a quieter environment away from the street. Comes fully furnished with bed, table, chair, and racks.",
+    "availability": "available",
     "pricing": {
       "singleOccupancy": {
         "label": "Single Occupancy",
@@ -91,6 +103,11 @@ export const rentalSpaces = [
         "amount": 6000
       }
     },
+    "highlights": [
+      "Peaceful backside location, away from street noise",
+      "Separate electricity meter (₹9/unit)",
+      "Furnished — bed, table, chair & racks provided"
+    ],
     "images": [
       "/images/back-room-1.svg"
     ],
@@ -100,9 +117,9 @@ export const rentalSpaces = [
   {
     "id": "kitchen",
     "slug": "kitchen",
-    "name": "Kitchen",
-    "type": "utility",
-    "description": "A shared kitchen space available for rent, suitable for cooking and meal preparation.",
+    "name": "Kitchen Space",
+    "type": "budget",
+    "description": "A compact budget-friendly living space with a wooden bed, ideal for individuals seeking affordable accommodation. This is not a shared cooking kitchen — it is a small room available for rent at a lower price.",
     "availability": "available",
     "pricing": {
       "monthly": {
@@ -110,6 +127,11 @@ export const rentalSpaces = [
         "amount": 2500
       }
     },
+    "highlights": [
+      "Most affordable private space",
+      "Wooden bed provided",
+      "No separate electricity meter — electricity included in rent"
+    ],
     "images": [
       "/images/kitchen-1.svg"
     ],
@@ -119,18 +141,25 @@ export const rentalSpaces = [
   {
     "id": "lobby",
     "slug": "lobby",
-    "name": "Lobby",
-    "type": "utility",
-    "description": "A common lobby area available for rent, providing additional shared space.",
+    "name": "Lobby Space",
+    "type": "budget",
+    "description": "A hall-style open living space with a wooden bed, offered at the most affordable rent. Ideal for budget-conscious individuals who need a simple, clean place to stay.",
     "availability": "available",
     "pricing": {
       "monthly": {
         "label": "Monthly Rent",
-        "amount": 2000
+        "amount": 1500
       }
     },
+    "highlights": [
+      "Lowest rent in the house",
+      "Wooden bed provided",
+      "Open hall-style living space",
+      "No separate electricity meter — electricity included in rent"
+    ],
     "images": [
-      "/images/lobby-1.svg"
+      "/images/lobby-1.png",
+      "/images/lobby-2.jpeg"
     ],
     "video": null,
     "rules": []
@@ -139,70 +168,139 @@ export const rentalSpaces = [
 
 export const facilities = [
   {
+    "name": "Two Bathrooms",
+    "description": "Two shared bathrooms — one with a Western toilet and one with an Indian toilet. Both are shared by all residents.",
+    "icon": "bath"
+  },
+  {
+    "name": "Geyser (Hot Water)",
+    "description": "A geyser (water heater) is available in the bathroom for hot water during winters.",
+    "icon": "flame"
+  },
+  {
     "name": "Refrigerator",
-    "description": "A refrigerator shared by residents for storing food and beverages.",
+    "description": "A shared refrigerator is available for all residents to store food and beverages.",
     "icon": "refrigerator"
   },
   {
-    "name": "Geyser",
-    "description": "A geyser (water heater) is available in the bathroom for hot water.",
-    "icon": "flame"
+    "name": "24×7 Water Supply",
+    "description": "Continuous water supply is available round the clock.",
+    "icon": "droplets"
+  },
+  {
+    "name": "Electricity Supply",
+    "description": "Uninterrupted electricity supply. The three main rooms have separate electricity meters (₹9/unit). Kitchen and Lobby spaces have electricity included in rent.",
+    "icon": "zap"
+  },
+  {
+    "name": "Furnished Spaces",
+    "description": "All spaces come with bed, table, chair, and racks. Budget spaces (Kitchen & Lobby) are provided with a wooden bed.",
+    "icon": "home"
+  },
+  {
+    "name": "Clean & Peaceful Environment",
+    "description": "The property is well-maintained with regular cleaning and a calm, peaceful atmosphere for focused living.",
+    "icon": "wind"
   }
 ];
 
 export const houseRules = [
-  "Switch off lights and electrical appliances when they are not in use."
+  "Full advance rent must be paid at the beginning of each month. Only after payment are you allowed to stay.",
+  "Switch off lights, fans, and all electrical appliances when not in use.",
+  "Flush and spray water after using the toilets so that other residents are not disturbed.",
+  "No loud music or sound systems. Maintain a quiet and peaceful environment.",
+  "No activities that disturb neighbours or are disrespectful to other residents or the property.",
+  "Gate closing time is 10:30 PM. No entry after 10:30 PM except in genuine emergencies. The gate opens early in the morning.",
+  "This property is for boys only. No girls are allowed on the premises.",
+  "A valid government ID proof (Aadhaar card) is required at the time of the rental agreement.",
+  "The landlord or property owner may inspect the property at any time without prior notice.",
+  "No non-vegetarian food is allowed inside the house.",
+  "No drinking or smoking is permitted anywhere on the premises.",
+  "One month's notice period is required before vacating. Inform the owner at least one month in advance so that a new tenant can be arranged.",
+  "The owner reserves the right to immediately remove any tenant from the property in case of any rule violation or disruptive behaviour.",
+  "Friends and visitors may come for a short time, but they are not permitted to stay for extended periods or overnight without prior approval."
 ];
 
 export const charges = {
-  "securityDeposit": {
-    "label": "Security Deposit",
-    "amount": null,
-    "description": "To be confirmed by the property owner."
-  },
   "electricity": {
     "label": "Electricity Charges",
     "amount": null,
-    "description": "Electricity is paid separately by tenants. Each room has a separate electricity meter. Charges are based on actual consumption as per the electricity board rates."
+    "description": "Electricity is charged at ₹9 per unit. The three main rooms (Front Balcony, Middle, and Back Room) have separate electricity meters. For Kitchen and Lobby spaces, electricity cost is included in the monthly rent."
   },
   "cleaning": {
     "label": "Bathroom Cleaning",
-    "amount": null,
-    "description": "Bathroom cleaning charges apply once every two months. The exact amount is to be confirmed.",
-    "frequency": "Once every two months"
+    "amount": 120,
+    "description": "A sweeper comes once a month for bathroom cleaning. The charge of ₹120 is shared on a rotation basis among all residents — you pay only when it is your turn, not every month.",
+    "frequency": "Monthly (on rotation — one resident per month)"
   },
-  "otherCharges": []
+  "otherCharges": [
+    {
+      "label": "No Personal Wi-Fi",
+      "amount": null,
+      "description": "No personal Wi-Fi connection is provided by the property. Residents may arrange their own internet connection if needed."
+    }
+  ]
 };
 
 export const termsAndConditions = [
   {
     "title": "Occupancy",
     "terms": [
+      "This property is exclusively for boys. No girls are permitted on the premises.",
       "The rental space is to be used for residential purposes only.",
       "Subletting or transferring the tenancy is not permitted without written consent from the owner.",
       "The maximum number of occupants must match the agreed occupancy type (single or double)."
     ]
   },
   {
-    "title": "Security Deposit",
+    "title": "Rent & Payment",
     "terms": [
-      "A security deposit is required before moving in. The amount will be confirmed by the owner.",
-      "The deposit is refundable at the time of vacating, subject to deductions for damages or unpaid dues."
+      "Full advance rent must be paid at the beginning of each month before continuing to stay.",
+      "There is no security deposit required.",
+      "Failure to pay rent on time may result in the owner asking you to vacate immediately."
     ]
   },
   {
     "title": "Electricity Billing",
     "terms": [
-      "Each room has a separate electricity meter.",
-      "Tenants are responsible for paying their own electricity bills based on actual consumption.",
-      "Electricity charges are separate from the monthly rent."
+      "The three main rooms (Front Balcony Room, Middle Room, and Back Room) each have a separate electricity meter.",
+      "Electricity is charged at ₹9 per unit based on actual meter readings.",
+      "Electricity charges are separate from the monthly rent for rooms with meters.",
+      "For Kitchen and Lobby spaces, electricity cost is included in the monthly rent — no separate meter is installed."
     ]
   },
   {
-    "title": "Cleaning Charges",
+    "title": "Bathroom Cleaning",
     "terms": [
-      "Bathroom cleaning charges apply once every two months.",
-      "The exact cleaning charge amount will be confirmed by the owner."
+      "A sweeper comes once a month for bathroom cleaning. The charge is ₹120.",
+      "This charge is shared on a rotation basis among all residents — each resident pays when it is their turn.",
+      "You will not be charged every month. The payment rotates among all occupants in the house."
+    ]
+  },
+  {
+    "title": "House Conduct & Restrictions",
+    "terms": [
+      "No non-vegetarian food is allowed inside the house.",
+      "No drinking or smoking is permitted on the premises.",
+      "No loud music, disturbances, or activities that disrupt neighbours or other residents.",
+      "The property gate closes at 10:30 PM. Late entry is allowed only in genuine emergencies.",
+      "Friends and visitors may come for a short time but are not allowed to stay overnight without prior approval."
+    ]
+  },
+  {
+    "title": "Property Inspection & ID",
+    "terms": [
+      "A valid government ID proof (Aadhaar card) must be provided at the time of rental agreement.",
+      "The landlord or property owner may inspect the property at any time without prior notice.",
+      "Residents must maintain their rented space in a clean and orderly condition."
+    ]
+  },
+  {
+    "title": "Notice Period & Vacating",
+    "terms": [
+      "A minimum notice period of one month is required before vacating.",
+      "Inform the property owner at least one month in advance so that a replacement tenant can be found.",
+      "The owner reserves the right to ask any tenant to vacate immediately in case of rule violations or disruptive behaviour."
     ]
   },
   {
@@ -210,21 +308,8 @@ export const termsAndConditions = [
     "terms": [
       "Tenants must maintain the rented space in a clean and orderly condition.",
       "Any damage to the property beyond normal wear and tear will be charged to the tenant.",
-      "Tenants must report any maintenance issues to the owner promptly."
-    ]
-  },
-  {
-    "title": "Guest Policy",
-    "terms": [
-      "Overnight guests require prior intimation to the owner.",
-      "The tenant is responsible for the behaviour of their guests."
-    ]
-  },
-  {
-    "title": "Notice Period",
-    "terms": [
-      "A notice period is required before vacating. The duration will be confirmed by the owner.",
-      "Failure to provide adequate notice may result in forfeiture of the security deposit."
+      "Tenants must report any maintenance issues to the owner promptly.",
+      "Switch off all electrical appliances when not in use."
     ]
   },
   {
@@ -239,10 +324,15 @@ export const termsAndConditions = [
 
 export const footerContent = {
   "text": "Chaudhary Villa",
+  "tagline": "Boys PG & Residential Rental Spaces",
   "location": "India"
 };
 
 export const navLinks = [
+  {
+    "label": "Home",
+    "href": "/"
+  },
   {
     "label": "Spaces",
     "href": "/#spaces"

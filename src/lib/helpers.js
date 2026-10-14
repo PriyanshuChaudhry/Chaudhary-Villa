@@ -29,10 +29,17 @@ export function getRooms(spaces) {
 }
 
 /**
- * Get all utility-type spaces (kitchen, lobby).
+ * Get all budget-type spaces (kitchen, lobby).
+ */
+export function getBudgetSpaces(spaces) {
+  return spaces.filter((space) => space.type === "budget" || space.type === "utility");
+}
+
+/**
+ * Get all utility-type spaces (kitchen, lobby). Alias for backwards compatibility.
  */
 export function getUtilities(spaces) {
-  return spaces.filter((space) => space.type === "utility");
+  return getBudgetSpaces(spaces);
 }
 
 /**
@@ -77,6 +84,7 @@ export function getDisplayPrice(space) {
     }
     return `${formatPrice(single || double)}/month`;
   }
+  // Budget or utility type (kitchen, lobby) — single monthly price
   return `${formatPrice(space.pricing.monthly?.amount)}/month`;
 }
 

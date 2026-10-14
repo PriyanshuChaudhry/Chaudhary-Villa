@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ImageOff,
   ArrowRight,
@@ -79,11 +80,12 @@ export default function SpaceCard({ space }) {
         onTouchEnd={handleTouchEnd}
       >
         {activeImage ? (
-          <img
+          <Image
             src={activeImage}
             alt={`${name} photo ${currentImgIndex + 1}`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             onError={(e) => {
               e.target.style.display = "none";
               const fallback = e.target.nextElementSibling;
@@ -109,7 +111,7 @@ export default function SpaceCard({ space }) {
 
         <div className="absolute top-3 right-3 z-10">
           <span className="px-2.5 py-1 text-[11px] font-semibold bg-white/95 backdrop-blur-md text-stone-700 rounded-full shadow-sm border border-stone-200/60 uppercase tracking-wider">
-            {type === "room" ? "Room" : "Shared Utility"}
+            {type === "room" ? "Room" : "Budget Space"}
           </span>
         </div>
 

@@ -77,7 +77,7 @@ export default function SpaceGrid({ spaces }) {
               Sorry, no rooms are currently available. You can check back later.
             </p>
             <p className="text-amber-700 text-xs mt-0.5">
-              Shared spaces (such as kitchen or lobby) currently available for rent are listed below.
+              Budget-friendly spaces (Kitchen or Lobby) are currently available for rent and listed below.
             </p>
           </div>
         </div>
