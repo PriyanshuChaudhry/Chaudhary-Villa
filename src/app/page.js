@@ -4,6 +4,7 @@ import SpaceGrid from "@/components/SpaceGrid";
 import FacilitiesList from "@/components/FacilitiesList";
 import HouseRules from "@/components/HouseRules";
 import ChargesSection from "@/components/ChargesSection";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import {
   rentalSpaces,
@@ -14,7 +15,8 @@ import {
 
 /**
  * Homepage — The main landing page visitors see after scanning the QR code.
- * Shows hero section, rental space grid, facilities, house rules, and charges.
+ * Shows hero section, rental space grid, facilities, house rules, charges,
+ * and contact & location info.
  * All data comes from the centralized propertyData.js file.
  */
 export default function HomePage() {
@@ -38,6 +40,9 @@ export default function HomePage() {
 
           {/* Charges & Billing */}
           <ChargesSection charges={charges} />
+
+          {/* Contact & Location */}
+          <ContactSection />
         </div>
       </main>
       <Footer />

@@ -85,11 +85,16 @@ export default function Hero() {
             {heroContent.subtitle}
           </p>
 
-          {/* Location */}
-          <div className="mt-4 inline-flex items-center gap-2 text-sm text-stone-500 sm:mt-5 sm:text-base">
+          {/* Location — tapping opens Google Maps directions */}
+          <a
+            href="https://maps.google.com/?q=26.877909,80.946611"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 text-sm text-teal-700 hover:text-teal-900 transition-colors sm:mt-5 sm:text-base underline decoration-teal-300/60 underline-offset-4 hover:decoration-teal-500"
+          >
             <MapPin className="h-4 w-4 shrink-0" />
             <span>{propertyInfo.locality}</span>
-          </div>
+          </a>
 
           {/* Call to action */}
           

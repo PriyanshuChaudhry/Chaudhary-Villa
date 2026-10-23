@@ -32,7 +32,7 @@ export const rentalSpaces = [
     "name": "Front Balcony Room",
     "type": "room",
     "description": "A well-ventilated room with a front-facing balcony, offering natural light and a pleasant view. Comes fully furnished with bed, table, chair, and racks.",
-    "availability": "unavailable",
+    "availability": "available",
     "pricing": {
       "singleOccupancy": {
         "label": "Single Occupancy",
@@ -49,8 +49,9 @@ export const rentalSpaces = [
       "Furnished — bed, table, chair & racks provided"
     ],
     "images": [
-      "/images/front-room-1.svg",
-      "/images/front-room-2.svg"
+      "/images/front-room-1.jpeg",
+      "/images/front-room-2.png",
+      "/images/front-room-3.png"
     ],
     "video": null,
     "rules": []
@@ -109,7 +110,7 @@ export const rentalSpaces = [
       "Furnished — bed, table, chair & racks provided"
     ],
     "images": [
-      "/images/back-room-1.svg"
+      "/images/back-room-1.jpeg"
     ],
     "video": null,
     "rules": []
@@ -144,7 +145,7 @@ export const rentalSpaces = [
     "name": "Lobby Space",
     "type": "budget",
     "description": "A hall-style open living space with a wooden bed, offered at the most affordable rent. Ideal for budget-conscious individuals who need a simple, clean place to stay.",
-    "availability": "available",
+    "availability": "unavailable",
     "pricing": {
       "monthly": {
         "label": "Monthly Rent",
@@ -167,6 +168,11 @@ export const rentalSpaces = [
 ];
 
 export const facilities = [
+  {
+  "name": "24/7 CCTV Security",
+  "description": "24/7 security surveillance with CCTV cameras installed in the house to help ensure the safety and security of all residents.",
+  "icon": "cctv"
+},
   {
     "name": "Two Bathrooms",
     "description": "Two shared bathrooms — one with a Western toilet and one with an Indian toilet. Both are shared by all residents.",
@@ -224,8 +230,8 @@ export const houseRules = [
 export const charges = {
   "electricity": {
     "label": "Electricity Charges",
-    "amount": null,
-    "description": "Electricity is charged at ₹9 per unit. The three main rooms (Front Balcony, Middle, and Back Room) have separate electricity meters. For Kitchen and Lobby spaces, electricity cost is included in the monthly rent."
+    "amount": 9,
+    "description": "Electricity is charged at ₹9 per unit. The three main rooms (Front Balcony, Middle, and Back Room) have separate electricity meters. For Mini room and Lobby spaces, electricity cost is included in the monthly rent."
   },
   "cleaning": {
     "label": "Bathroom Cleaning",
@@ -328,6 +334,13 @@ export const footerContent = {
   "location": "Lucknow, India"
 };
 
+export const contactInfo = {
+  "phones": ["8090546567", "6387056662"],
+  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d889.7014597701996!2d80.94595726955819!3d26.8779091947698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUyJzQwLjUiTiA4MMKwNTYnNDcuOCJF!5e0!3m2!1sen!2sin!4v1792749573670!5m2!1sen!2sin",
+  "mapDirectionsUrl": "https://maps.google.com/?q=26.877909,80.946611",
+  "address": "Lucknow, Uttar Pradesh, India"
+};
+
 export const navLinks = [
   {
     "label": "Home",
@@ -348,6 +361,10 @@ export const navLinks = [
   {
     "label": "Terms",
     "href": "/terms"
+  },
+  {
+    "label": "Contact",
+    "href": "/#contact"
   },
   {
     "label": "Admin",

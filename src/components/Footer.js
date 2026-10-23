@@ -1,6 +1,6 @@
-import { Home, Lock, MapPin, Phone, ArrowUpRight } from "lucide-react";
+import { Home, Lock, MapPin, Phone, ArrowUpRight, Navigation } from "lucide-react";
 import Link from "next/link";
-import { footerContent, navLinks, propertyInfo } from "@/data/propertyData";
+import { footerContent, navLinks, propertyInfo, contactInfo } from "@/data/propertyData";
 
 /**
  * Footer — Premium footer with gradient accent, organized columns, and polished layout.
@@ -10,6 +10,9 @@ export default function Footer() {
 
   // Separate nav links for footer display (exclude Admin from main links)
   const mainLinks = navLinks.filter((l) => l.href !== "/admin");
+
+  const formatPhone = (num) =>
+    `${num.slice(0, 4)} ${num.slice(4, 7)} ${num.slice(7)}`;
 
   return (
     <footer className="relative mt-24">
@@ -60,19 +63,40 @@ export default function Footer() {
               </nav>
             </div>
 
-            {/* Column 3: Property Info */}
+            {/* Column 3: Contact Info */}
             <div>
               <h3 className="text-xs font-bold text-stone-300 uppercase tracking-widest mb-5">
-                Property
+                Contact
               </h3>
               <div className="space-y-3">
+                {/* Location */}
                 <div className="flex items-start gap-2.5 text-stone-400">
                   <MapPin className="w-4 h-4 text-stone-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{footerContent.location}</span>
+                  <span className="text-sm">{contactInfo.address}</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-stone-400">
-                  <span className="text-sm">Boys PG • Residential Rental</span>
-                </div>
+
+                {/* Phone numbers */}
+                {contactInfo.phones.map((phone) => (
+                  <a
+                    key={phone}
+                    href={`tel:+91${phone}`}
+                    className="flex items-center gap-2.5 text-stone-400 hover:text-teal-400 transition-colors duration-200"
+                  >
+                    <Phone className="w-4 h-4 text-stone-500 flex-shrink-0" />
+                    <span className="text-sm">+91 {formatPhone(phone)}</span>
+                  </a>
+                ))}
+
+                {/* Directions link */}
+                <a
+                  href={contactInfo.mapDirectionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-teal-500 hover:text-teal-400 transition-colors duration-200 mt-1"
+                >
+                  <Navigation className="w-3.5 h-3.5" />
+                  <span>Get Directions</span>
+                </a>
               </div>
 
               {/* Admin link — subtle */}
