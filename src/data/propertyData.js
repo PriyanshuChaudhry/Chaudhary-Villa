@@ -14,7 +14,7 @@
 export const propertyInfo = {
   "name": "Chaudhary Villa",
   "tagline": "Home Sweet Home",
-  "locality": "Lucknow, India",
+  "locality": "Mahanagar, Lucknow, India",
   "seoDescription": "Affordable residential rental spaces at Chaudhary Villa. View photos, check availability, prices, facilities, and house rules.",
   "ogImage": "/images/og-image.jpg"
 };

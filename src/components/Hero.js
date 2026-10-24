@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown, MapPin } from "lucide-react";
+import { ArrowDown, MapPin, ArrowUpRight } from "lucide-react";
 import { heroContent, propertyInfo } from "@/data/propertyData";
 
 export default function Hero() {
@@ -87,14 +87,16 @@ export default function Hero() {
 
           {/* Location — tapping opens Google Maps directions */}
           <a
-            href="https://maps.google.com/?q=26.877909,80.946611"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-sm text-teal-700 hover:text-teal-900 transition-colors sm:mt-5 sm:text-base underline decoration-teal-300/60 underline-offset-4 hover:decoration-teal-500"
-          >
-            <MapPin className="h-4 w-4 shrink-0" />
-            <span>{propertyInfo.locality}</span>
-          </a>
+  href="https://maps.google.com/?q=26.877909,80.946611"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={`View ${propertyInfo.locality} on Google Maps`}
+  className="mt-4 inline-flex max-w-full min-w-0 items-center gap-2 rounded-full border border-teal-200/80 bg-teal-50/80 px-3 py-2 text-sm font-medium text-teal-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-300 hover:bg-teal-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 sm:mt-5 sm:gap-2 sm:px-4 sm:text-base"
+>
+  <MapPin className="h-4 w-4 shrink-0" />
+  <span className="truncate">{propertyInfo.locality}</span>
+  <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-70 transition-transform duration-200" />
+</a>
 
           {/* Call to action */}
           
