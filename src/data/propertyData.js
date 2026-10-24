@@ -195,12 +195,12 @@ export const facilities = [
   },
   {
     "name": "Electricity Supply",
-    "description": "Uninterrupted electricity supply. The three main rooms have separate electricity meters (₹9/unit). Kitchen and Lobby spaces have electricity included in rent.",
+    "description": "Uninterrupted electricity supply. The three main rooms have separate electricity meters (₹9/unit). Mini room and Lobby spaces have electricity included in rent.",
     "icon": "zap"
   },
   {
     "name": "Furnished Spaces",
-    "description": "All spaces come with bed, table, chair, and racks. Budget spaces (Kitchen & Lobby) are provided with a wooden bed.",
+    "description": "All spaces come with bed, table, chair, and racks. Budget spaces (Mini room & Lobby) are provided with a wooden bed.",
     "icon": "home"
   },
   {
@@ -272,7 +272,7 @@ export const termsAndConditions = [
       "The three main rooms (Front Balcony Room, Middle Room, and Back Room) each have a separate electricity meter.",
       "Electricity is charged at ₹9 per unit based on actual meter readings.",
       "Electricity charges are separate from the monthly rent for rooms with meters.",
-      "For Kitchen and Lobby spaces, electricity cost is included in the monthly rent — no separate meter is installed."
+      "For Mini room and Lobby spaces, electricity cost is included in the monthly rent — no separate meter is installed."
     ]
   },
   {
