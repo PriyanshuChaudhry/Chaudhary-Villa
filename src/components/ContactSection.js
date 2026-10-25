@@ -1,7 +1,8 @@
 "use client";
 
 import { MapPin, Phone, Navigation, ExternalLink } from "lucide-react";
-import { contactInfo, propertyInfo } from "@/data/propertyData";
+import { contactInfo } from "@/data/contactData";
+import { propertyInfo } from "@/data/propertyData";
 
 /**
  * ContactSection — Embedded Google Map, phone numbers, and directions.

@@ -1,6 +1,7 @@
 import { Home, Lock, MapPin, Phone, ArrowUpRight, Navigation } from "lucide-react";
 import Link from "next/link";
-import { footerContent, navLinks, propertyInfo, contactInfo } from "@/data/propertyData";
+import { footerContent, navLinks, propertyInfo } from "@/data/propertyData";
+import { contactInfo } from "@/data/contactData";
 
 /**
  * Footer — Premium footer with gradient accent, organized columns, and polished layout.
