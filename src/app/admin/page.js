@@ -92,32 +92,6 @@ export default function AdminPage() {
   const [pinInput, setPinInput] = useState("");
   const [pinError, setPinError] = useState(false);
 
-  // GitHub Settings
-  const [ghToken, setGhToken] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("chaudhary_gh_token") || "";
-    }
-    return "";
-  });
-  const [ghOwner, setGhOwner] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("chaudhary_gh_owner") || "PriyanshuChaudhry";
-    }
-    return "PriyanshuChaudhry";
-  });
-  const [ghRepo, setGhRepo] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("chaudhary_gh_repo") || "Chaudhary-Villa";
-    }
-    return "Chaudhary-Villa";
-  });
-  const [ghBranch, setGhBranch] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("chaudhary_gh_branch") || "main";
-    }
-    return "main";
-  });
-
   // Editable Property State
   const [spaces, setSpaces] = useState(initialSpaces);
   const [chargesState, setChargesState] = useState(initialCharges);
@@ -126,6 +100,8 @@ export default function AdminPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
+  const [successSha, setSuccessSha] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -144,18 +120,6 @@ export default function AdminPage() {
     setIsAuthenticated(false);
     localStorage.removeItem("chaudhary_admin_auth");
     localStorage.removeItem("chaudhary_admin_auth_pin");
-  };
-
-  const saveGitHubSettings = () => {
-    localStorage.setItem("chaudhary_gh_token", ghToken.trim());
-    localStorage.setItem("chaudhary_gh_owner", ghOwner.trim());
-    localStorage.setItem("chaudhary_gh_repo", ghRepo.trim());
-    localStorage.setItem("chaudhary_gh_branch", ghBranch.trim());
-    setStatusMessage({
-      type: "success",
-      text: "GitHub settings saved locally on your device.",
-    });
-    setTimeout(() => setStatusMessage(null), 3500);
   };
 
   // Toggle Space Availability
@@ -270,85 +234,33 @@ export default function AdminPage() {
     });
   };
 
-  // Push directly to GitHub via GitHub Contents API
+  // Push to GitHub via secure server-side API route
   const handlePublishToGitHub = async () => {
-    if (!ghToken || !ghOwner || !ghRepo) {
-      setStatusMessage({
-        type: "error",
-        text: "Please configure your GitHub Token, Owner, and Repository name below.",
-      });
-      return;
-    }
-
     setIsSaving(true);
     setStatusMessage({
       type: "info",
-      text: "Connecting to GitHub API...",
+      text: "Publishing changes to GitHub...",
     });
 
     try {
-      const filePath = "src/data/propertyData.js";
-      const branch = ghBranch || "master";
-      const apiUrl = `https://api.github.com/repos/${ghOwner.trim()}/${ghRepo.trim()}/contents/${filePath}?ref=${branch}`;
-
-      // 1. Fetch current file to get latest SHA
-      const getRes = await fetch(apiUrl, {
-        headers: {
-          Authorization: `Bearer ${ghToken.trim()}`,
-          Accept: "application/vnd.github.v3+json",
-        },
-      });
-
-      if (!getRes.ok) {
-        throw new Error(
-          `GitHub API error (${getRes.status}): ${getRes.statusText}. Check your repository name and branch.`
-        );
-      }
-
-      const fileData = await getRes.json();
-      const currentSha = fileData.sha;
-
-      // 2. Generate updated file content and encode in Base64
       const updatedCode = serializePropertyData(spaces, chargesState);
-      const utf8Bytes = new TextEncoder().encode(updatedCode);
-      let binary = "";
-      for (let i = 0; i < utf8Bytes.length; i++) {
-        binary += String.fromCharCode(utf8Bytes[i]);
-      }
-      const base64Content = btoa(binary);
 
-      // 3. Commit updated file to GitHub
-      const putRes = await fetch(
-        `https://api.github.com/repos/${ghOwner.trim()}/${ghRepo.trim()}/contents/${filePath}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${ghToken.trim()}`,
-            Accept: "application/vnd.github.v3+json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: "chore: update room availability via owner admin panel",
-            content: base64Content,
-            sha: currentSha,
-            branch: branch,
-          }),
-        }
-      );
-
-      if (!putRes.ok) {
-        const errJson = await putRes.json();
-        throw new Error(
-          errJson.message || `Failed to update repository (${putRes.status})`
-        );
-      }
-
-      const result = await putRes.json();
-
-      setStatusMessage({
-        type: "success",
-        text: `Successfully committed to GitHub (${result.commit?.sha?.slice(0, 7)})! Vercel will rebuild and deploy your site automatically in ~30 seconds.`,
+      const res = await fetch("/api/publish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: updatedCode }),
       });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || `Server error (${res.status})`);
+      }
+
+      // Show success overlay
+      setSuccessSha(data.sha || "");
+      setShowSuccessOverlay(true);
+      setStatusMessage(null);
     } catch (err) {
       console.error(err);
       setStatusMessage({
@@ -653,84 +565,36 @@ export default function AdminPage() {
           </div>
         </section>
 
-        {/* GitHub Direct Integration Settings */}
-        <section className="p-6 sm:p-8 bg-stone-50/90 rounded-3xl border border-stone-200/80">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <GitBranch className="w-5 h-5 text-stone-600" />
-              <h2 className="text-base font-bold text-charcoal">
-                GitHub Repository Settings
-              </h2>
-            </div>
-            <button
-              onClick={saveGitHubSettings}
-              className="text-xs font-semibold text-teal-700 hover:text-teal-800 bg-teal-50 px-3 py-1.5 rounded-lg border border-teal-200 transition-colors"
-            >
-              Save Credentials
-            </button>
-          </div>
-
-          <p className="text-stone-500 text-xs mb-5 leading-relaxed">
-            These settings are stored <strong>strictly on your device</strong> in your local browser and are never transmitted to any third-party server.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-stone-600 uppercase tracking-wider mb-1.5">
-                GitHub Personal Access Token (PAT)
-              </label>
-              <input
-                type="password"
-                placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-                value={ghToken}
-                onChange={(e) => setGhToken(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-teal-200"
-              />
-              <span className="text-[11px] text-stone-400 mt-1 block">
-                Needs <code>repo</code> or <code>contents:write</code> scope.
-              </span>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-stone-600 uppercase tracking-wider mb-1.5">
-                Repository Owner (Username / Org)
-              </label>
-              <input
-                type="text"
-                placeholder="e.g. your-github-username"
-                value={ghOwner}
-                onChange={(e) => setGhOwner(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-teal-200"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-stone-600 uppercase tracking-wider mb-1.5">
-                Repository Name
-              </label>
-              <input
-                type="text"
-                placeholder="e.g. Chaudhary-Villa"
-                value={ghRepo}
-                onChange={(e) => setGhRepo(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-teal-200"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-stone-600 uppercase tracking-wider mb-1.5">
-                Target Branch
-              </label>
-              <input
-                type="text"
-                placeholder="master or main"
-                value={ghBranch}
-                onChange={(e) => setGhBranch(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-teal-200"
-              />
+        {/* Success Overlay */}
+        {showSuccessOverlay && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+            <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-10 max-w-md w-full text-center animate-in">
+              <div className="w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-5">
+                <CheckCircle2 className="w-10 h-10 text-emerald-600" />
+              </div>
+              <h3 className="text-2xl font-extrabold text-charcoal mb-2">
+                Done! ✅
+              </h3>
+              <p className="text-stone-600 text-sm mb-1">
+                Changes pushed to GitHub successfully.
+              </p>
+              {successSha && (
+                <p className="text-stone-400 text-xs mb-5">
+                  Commit: <code className="bg-stone-100 px-1.5 py-0.5 rounded text-stone-600">{successSha}</code>
+                </p>
+              )}
+              <p className="text-stone-500 text-xs mb-6 leading-relaxed">
+                Vercel will automatically rebuild and deploy your site in ~30 seconds. Your live website will be updated shortly.
+              </p>
+              <button
+                onClick={() => setShowSuccessOverlay(false)}
+                className="w-full py-3 bg-teal-700 hover:bg-teal-800 text-white font-bold rounded-xl shadow-sm transition-all text-sm"
+              >
+                OK, Got It
+              </button>
             </div>
           </div>
-        </section>
+        )}
       </main>
       <Footer />
     </>
