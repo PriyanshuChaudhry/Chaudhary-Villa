@@ -32,7 +32,7 @@ export const rentalSpaces = [
     "name": "Front Balcony Room",
     "type": "room",
     "description": "A well-ventilated room with a front-facing balcony, offering natural light and a pleasant view. Comes fully furnished with bed, table, chair, and racks.",
-    "availability": "available",
+    "availability": "unavailable",
     "pricing": {
       "singleOccupancy": {
         "label": "Single Occupancy",
@@ -332,13 +332,6 @@ export const footerContent = {
   "text": "Chaudhary Villa",
   "tagline": "Residential Rental Spaces",
   "location": "Mahanagar, Lucknow, India"
-};
-
-export const contactInfo = {
-  "phones": ["8090546567", "6387056662"],
-  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d889.7014597701996!2d80.94595726955819!3d26.8779091947698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUyJzQwLjUiTiA4MMKwNTYnNDcuOCJF!5e0!3m2!1sen!2sin!4v1792749573670!5m2!1sen!2sin",
-  "mapDirectionsUrl": "https://maps.google.com/?q=26.877909,80.946611",
-  "address": "521/96, Mahanagar, Lucknow, Uttar Pradesh, India"
 };
 
 export const navLinks = [
