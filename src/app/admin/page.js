@@ -17,6 +17,8 @@ import {
   Check,
   RefreshCw,
   ExternalLink,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -91,6 +93,7 @@ export default function AdminPage() {
   });
   const [pinInput, setPinInput] = useState("");
   const [pinError, setPinError] = useState(false);
+  const [showPin, setShowPin] = useState(false);
 
   // Editable Property State
   const [spaces, setSpaces] = useState(initialSpaces);
@@ -291,18 +294,33 @@ export default function AdminPage() {
 
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <input
-                  type="password"
-                  placeholder="Enter Owner PIN"
-                  value={pinInput}
-                  onChange={(e) => setPinInput(e.target.value)}
-                  className={`w-full px-4 py-3 rounded-xl border text-center text-lg tracking-widest bg-stone-50 focus:outline-none focus:ring-2 ${
-                    pinError
-                      ? "border-rose-400 focus:ring-rose-200"
-                      : "border-stone-200 focus:ring-teal-200"
-                  }`}
-                  autoFocus
-                />
+                <div className="relative">
+                  <input
+                    type={showPin ? "text" : "password"}
+                    placeholder="Enter Owner PIN"
+                    value={pinInput}
+                    onChange={(e) => setPinInput(e.target.value)}
+                    className={`w-full px-4 py-3 pr-12 rounded-xl border text-center text-lg tracking-widest bg-stone-50 focus:outline-none focus:ring-2 ${
+                      pinError
+                        ? "border-rose-400 focus:ring-rose-200"
+                        : "border-stone-200 focus:ring-teal-200"
+                    }`}
+                    autoFocus
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPin((prev) => !prev)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-stone-400 hover:text-stone-600 hover:bg-stone-100 transition-colors"
+                    aria-label={showPin ? "Hide PIN" : "Show PIN"}
+                    tabIndex={-1}
+                  >
+                    {showPin ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
                 {pinError && (
                   <p className="text-rose-600 text-xs mt-2 font-medium">
                     Incorrect PIN. Please try again.
