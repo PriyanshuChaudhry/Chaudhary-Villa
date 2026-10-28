@@ -32,7 +32,7 @@ export const rentalSpaces = [
     "name": "Front Balcony Room",
     "type": "room",
     "description": "A well-ventilated room with a front-facing balcony, offering natural light and a pleasant view. Comes fully furnished with bed, table, chair, and racks.",
-    "availability": "unavailable",
+    "availability": "available",
     "pricing": {
       "singleOccupancy": {
         "label": "Single Occupancy",
@@ -62,7 +62,7 @@ export const rentalSpaces = [
     "name": "Middle Room",
     "type": "room",
     "description": "A centrally located room within the house, providing a quiet and private living space. Comes fully furnished with bed, table, chair, and racks.",
-    "availability": "available",
+    "availability": "unavailable",
     "pricing": {
       "singleOccupancy": {
         "label": "Single Occupancy",
